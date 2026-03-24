@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BaitLab AI Terminal</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+      font-family: "Courier New", Courier, monospace;
+      color: #00FF7F;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .terminal {
+      width: 80%;
+      max-width: 800px;
+      background: #111;
+      border: 2px solid #444;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 20px rgba(0, 255, 127, 0.5);
+      color: #00FF7F;
+    }
+    .terminal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      background: #222;
+      border-bottom: 2px solid #444;
+      border-radius: 10px 10px 0 0;
+    }
+    .terminal-header span {
+      color: white;
+      font-size: 0.9em;
+      font-weight: bold;
+    }
+    .terminal-content {
+      margin-top: 10px;
+      font-size: 1em;
+      line-height: 1.5;
+    }
+    .command {
+      color: #00FF7F;
+    }
+    .output {
+      color: #00FFFF;
+    }
+    .error {
+      color: #FF00FF;
+    }
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="terminal">
+    <div class="terminal-header">
+      <span class="title">BaitLab AI Terminal</span>
+      <span>AI Powered Terminal</span>
+    </div>
+    <div class="terminal-content">
+      <p><span class="command">> Initiating AI software...</span></p>
+      <p class="output">[SYSTEM]: Welcome to BaitLab AI Terminal!</p>
+      <p><span class="command">> Processing data...</span></p>
+      <p class="output">[OUTPUT]: Insights ready for analysis.<br>→ <span class="command">What would you like to do next?</span></p>
+    </div>
+  </div>
+</body>
+</html>
