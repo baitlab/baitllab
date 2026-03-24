@@ -1,57 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terminal Typewriter Demo</title>
-    <style>
-        body {
-            font-family: monospace;
-            margin: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        #output {
-            white-space: pre;
-            border: 1px solid #ccc;
-            padding: 20px;
-            margin-top: 20px;
-            width: 80%;
-            max-width: 600px;
-            background-color: #f9f9f9;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .contact {
-            margin-top: 40px;
-            font-size: 14px;
-            color: #555;
-        }
-    </style>
+    <title>Document</title>
 </head>
 <body>
-    <h1>Terminal Typewriter Demo</h1>
-    <div id="output"></div>
-    <div class="contact">
-        <p><strong>Contact Us:</strong></p>
-        <p>Email: support@baitlab.com</p>
-        <p>Phone: +1 234 567 890</p>
-        <p>Address: 123 Innovation Drive, Tech City, AI World</p>
-    </div>
-    <script>
-        const text = 'Welcome to the Terminal Typewriter Demo!\n\nThis is an introduction to our application.\nWe create AI solutions for modern devices.\nFeel free to reach out through the contact information below.\n';
-        let index = 0;
-        const outputDiv = document.getElementById('output');
-
-        function typeWriter() {
-            if (index < text.length) {
-                outputDiv.innerHTML += text.charAt(index);
-                index++;
-                setTimeout(typeWriter, 100);
-            }
-        }
-
-        typeWriter();
-    </script>
+    <h1>Welcome to Bait Lab</h1>
+    <p>Contact us at: info@baitllab.com</p>
 </body>
 </html>
