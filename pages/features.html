@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <title>Features — Baitlab</title>
+  <style>
+    .features-hero { text-align: center; padding: 56px 0 32px; }
+    .features-hero h1 { font-size: clamp(24px, 4vw, 42px); margin-bottom: 12px; }
+    .features-hero p { color: var(--muted); font-size: 15px; max-width: 520px; margin: 0 auto; }
+
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+    }
+    .feature-card:hover {
+      border-color: rgba(0,229,255,0.28);
+      transform: translateY(-4px);
+      box-shadow: 0 14px 40px rgba(0,229,255,0.07);
+    }
+    .feature-card-icon { font-size: 36px; margin-bottom: 14px; }
+    .feature-card h2 { color: var(--cyan); font-size: 18px; margin-bottom: 8px; }
+    .feature-card .desc { color: var(--muted); font-size: 13px; line-height: 1.7; margin-bottom: 16px; }
+
+    .benefits-list { list-style: none; padding: 0; margin: 0 0 16px; }
+    .benefits-list li { font-size: 13px; color: var(--muted); padding: 4px 0; display: flex; align-items: flex-start; gap: 8px; }
+    .benefits-list li::before { content: "✓"; color: var(--lime); flex-shrink: 0; font-weight: 700; }
+
+    .use-cases { background: rgba(0,255,102,0.04); border-left: 3px solid var(--lime); padding: 10px 14px; border-radius: 0 6px 6px 0; font-size: 12px; color: var(--muted); }
+    .use-cases strong { color: var(--lime); display: block; margin-bottom: 4px; }
+
+    .try-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0,229,255,0.08);
+      border: 1px solid rgba(0,229,255,0.22);
+      color: var(--cyan);
+      padding: 7px 16px;
+      border-radius: 6px;
+      font-family: var(--font);
+      font-size: 12px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+      margin-top: 12px;
+    }
+    .try-btn:hover { background: rgba(0,229,255,0.16); text-decoration: none; }
+
+    .ai-banner {
+      background: linear-gradient(135deg, rgba(0,229,255,0.07), rgba(0,255,102,0.07));
+      border: 1px solid rgba(0,229,255,0.15);
+      border-radius: 12px;
+      padding: 28px 32px;
+      text-align: center;
+      margin-top: 48px;
+    }
+    .ai-banner h3 { color: var(--cyan); font-size: 20px; margin-bottom: 10px; }
+    .ai-banner p { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
+
+    .tech-chips { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+    .tech-chip {
+      background: rgba(0,0,0,0.4);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar" aria-label="Main navigation">
+    <a class="brand" href="../index.html">Baitlab</a>
+    <button class="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav>
+      <a class="nav-btn" href="../index.html">&#127968; Home</a>
+      <a class="nav-btn" href="console.html">&#128187; Console</a>
+      <a class="nav-btn" href="demo.html">&#9889; Live Demo</a>
+      <a class="nav-btn active" href="features.html">&#128640; Features</a>
+      <a class="nav-btn" href="pricing.html">&#128176; Pricing</a>
+      <a class="nav-btn cta ripple-btn" href="demo.html">Try Free</a>
+    </nav>
+  </nav>
+
+  <div class="page-wrap page-content">
+
+    <div class="features-hero anim-fade-in">
+      <h1 class="gradient-text">&#128640; Platform Features</h1>
+      <p>Everything you need to automate calls, tasks, and workflows with AI.</p>
+    </div>
+
+    <div class="glow-divider"></div>
+
+    <div class="grid-2">
+
+      <!-- AI Calling -->
+      <div class="feature-card anim-on-scroll">
+        <div class="feature-card-icon">&#128222;</div>
+        <h2>AI Calling</h2>
+        <p class="desc">Baitlab's AI voice agent makes and receives calls on your behalf using natural, human-like speech. It books appointments, takes messages, qualifies leads, and handles routine calls 24/7.</p>
+        <ul class="benefits-list">
+          <li>Natural-sounding voice conversations</li>
+          <li>Appointment booking and confirmation</li>
+          <li>Lead qualification and follow-up</li>
+          <li>Multi-language support</li>
+          <li>Call transcription and summary</li>
+        </ul>
+        <div class="use-cases">
+          <strong>Use cases:</strong>
+          Dental clinic bookings &middot; Sales outreach &middot; Customer callbacks &middot; Service reminders
+        </div>
+        <a class="try-btn" href="demo.html?cmd=call+my+barber">&#9654; Try: call my barber</a>
+      </div>
+
+      <!-- Smart Task Execution -->
+      <div class="feature-card anim-on-scroll anim-delay-2">
+        <div class="feature-card-icon">&#129504;</div>
+        <h2>Smart Task Execution</h2>
+        <p class="desc">Give Baitlab a complex, multi-step instruction and it parses, plans, and executes each step automatically. Chain tasks together for powerful end-to-end automation.</p>
+        <ul class="benefits-list">
+          <li>Natural language command parsing</li>
+          <li>Multi-step task chaining</li>
+          <li>Context-aware execution</li>
+          <li>Error recovery and retries</li>
+          <li>Execution logs and audit trail</li>
+        </ul>
+        <div class="use-cases">
+          <strong>Use cases:</strong>
+          Report generation &middot; Data processing &middot; File management &middot; API integrations
+        </div>
+        <a class="try-btn" href="demo.html?cmd=execute+weekly+report">&#9654; Try: execute weekly report</a>
+      </div>
+
+      <!-- Automation Workflows -->
+      <div class="feature-card anim-on-scroll">
+        <div class="feature-card-icon">&#128260;</div>
+        <h2>Automation Workflows</h2>
+        <p class="desc">Build and deploy automation pipelines using plain language. Baitlab connects to your existing tools (email, calendar, CRM, Slack) and runs workflows on schedule or on trigger.</p>
+        <ul class="benefits-list">
+          <li>Visual + text workflow builder</li>
+          <li>Trigger-based automation (time, event, condition)</li>
+          <li>Integration with 100+ apps</li>
+          <li>WhatsApp, Email, Calendar, Slack</li>
+          <li>Real-time monitoring and alerts</li>
+        </ul>
+        <div class="use-cases">
+          <strong>Use cases:</strong>
+          Email auto-replies &middot; CRM updates &middot; Daily standup &middot; Invoice processing
+        </div>
+        <a class="try-btn" href="demo.html?cmd=automate+email+replies">&#9654; Try: automate email replies</a>
+      </div>
+
+      <!-- Voice Commands -->
+      <div class="feature-card anim-on-scroll anim-delay-2">
+        <div class="feature-card-icon">&#127908;</div>
+        <h2>Voice Commands</h2>
+        <p class="desc">Interact with Baitlab entirely hands-free. Speak natural language commands and Baitlab understands your intent, disambiguates context, and executes accordingly.</p>
+        <ul class="benefits-list">
+          <li>Natural language understanding (NLU)</li>
+          <li>Context retention across commands</li>
+          <li>Supported: call, schedule, remind, automate, execute</li>
+          <li>Hands-free operation</li>
+          <li>Mobile and desktop support</li>
+        </ul>
+        <div class="use-cases">
+          <strong>Use cases:</strong>
+          Hands-free driving &middot; Accessibility &middot; Smart office &middot; Field workers
+        </div>
+        <a class="try-btn" href="console.html">&#9654; Open Console</a>
+      </div>
+
+      <!-- AI Integration -->
+      <div class="feature-card anim-on-scroll">
+        <div class="feature-card-icon">&#129302;</div>
+        <h2>AI Integration</h2>
+        <p class="desc">Baitlab uses state-of-the-art free AI models including Mistral, Llama, and Gemma via the HuggingFace Inference API. No GPU required &mdash; runs in the cloud with a free API token.</p>
+        <ul class="benefits-list">
+          <li>HuggingFace free tier (300 req/hour)</li>
+          <li>Groq Cloud support (30 req/min)</li>
+          <li>Models: Mistral 7B, Llama 3, Gemma</li>
+          <li>Response streaming (word-by-word)</li>
+          <li>Smart local fallback (no key needed)</li>
+        </ul>
+        <div class="use-cases">
+          <strong>Providers:</strong>
+          HuggingFace &middot; Groq &middot; OpenRouter &middot; Local Ollama
+        </div>
+        <a class="try-btn" href="console.html">&#128273; Set your AI token</a>
+      </div>
+
+      <!-- Real-time Response -->
+      <div class="feature-card anim-on-scroll anim-delay-2">
+        <div class="feature-card-icon">&#9889;</div>
+        <h2>Real-time Response</h2>
+        <p class="desc">Baitlab delivers AI responses with word-by-word streaming animation &mdash; just like ChatGPT. Responses appear instantly as they're generated, keeping you engaged and informed.</p>
+        <ul class="benefits-list">
+          <li>Word-by-word streaming text</li>
+          <li>Progress indicators while thinking</li>
+          <li>Sub-second initial response</li>
+          <li>Terminal-style output formatting</li>
+          <li>Scroll-to-latest auto-scroll</li>
+        </ul>
+        <div class="use-cases">
+          <strong>Response types:</strong>
+          Confirmations &middot; Summaries &middot; Status updates &middot; Step-by-step logs
+        </div>
+        <a class="try-btn" href="demo.html">&#9654; See it live</a>
+      </div>
+
+    </div>
+
+    <!-- AI Technology Banner -->
+    <div class="ai-banner anim-on-scroll">
+      <h3>&#129302; Powered by Free AI Models</h3>
+      <p>Baitlab runs on open-source, state-of-the-art language models. No expensive API subscriptions needed.</p>
+      <div class="tech-chips">
+        <span class="tech-chip">Mistral 7B</span>
+        <span class="tech-chip">Llama 3</span>
+        <span class="tech-chip">Gemma</span>
+        <span class="tech-chip">HuggingFace</span>
+        <span class="tech-chip">Groq Cloud</span>
+        <span class="tech-chip">OpenRouter</span>
+      </div>
+      <br>
+      <a class="btn-primary ripple-btn" href="demo.html" style="display:inline-block; margin-top: 8px;">
+        &#9889; Try the Demo
+      </a>
+    </div>
+
+  </div>
+
+  <script src="../js/utils.js"></script>
+</body>
+</html>
