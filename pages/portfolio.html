@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <title>Portfolio — Baitlab</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <header class="header">
+    <a href="../index.html" class="brand">Baitlab</a>
+    <nav class="nav">
+      <a href="../index.html" class="btn">← Home</a>
+      <a href="info-hub.html" class="btn">Info Hub</a>
+      <a href="3d-showcase.html" class="btn">3D Showcase</a>
+      <a href="demo.html" class="btn btn-primary">Try Demo</a>
+    </nav>
+  </header>
+
+  <main>
+    <a href="../index.html" class="back-link">← Back to Home</a>
+
+    <div class="hero">
+      <div class="headline">AI <span>Portfolio</span></div>
+      <p class="sub-headline">Projects and deployments powered by Baitlab AI — showcasing real-world applications across industries.</p>
+    </div>
+
+    <!-- Filter tabs -->
+    <section aria-label="Portfolio Filter" data-tabs-scope>
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="pf-all">All</button>
+        <button class="tab-btn" data-tab="pf-voice">Voice AI</button>
+        <button class="tab-btn" data-tab="pf-automation">Automation</button>
+        <button class="tab-btn" data-tab="pf-3d">3D / Visual</button>
+      </div>
+
+      <!-- All projects -->
+      <div class="tab-content active" id="pf-all">
+        <div class="grid stagger-parent">
+
+          <div class="info-card-wrap stagger-child">
+            <div class="info-card">
+              <div class="info-card-front">
+                <div class="info-card-icon">🏥</div>
+                <div class="info-card-title">MedDesk AI</div>
+                <div class="info-card-sub">Healthcare · Voice AI</div>
+              </div>
+              <div class="info-card-back">
+                AI receptionist handling 2,400 calls/day for a multi-clinic healthcare network. 91% first-call resolution, 40% reduction in hold times.
+                <br><br>
+                <span class="badge badge-cyan">Voice AI</span>
+                <span class="badge badge-lime">CRM Integration</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-card-wrap stagger-child">
+            <div class="info-card">
+              <div class="info-card-front">
+                <div class="info-card-icon">🏠</div>
+                <div class="info-card-title">PropBot</div>
+                <div class="info-card-sub">Real Estate · Automation</div>
+              </div>
+              <div class="info-card-back">
+                Automated lead qualification, property matching, and appointment booking for a top-50 real estate agency. 3× more qualified leads per month.
+                <br><br>
+                <span class="badge badge-purple">Workflow AI</span>
+                <span class="badge badge-cyan">Calendly Sync</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-card-wrap stagger-child">
+            <div class="info-card">
+              <div class="info-card-front">
+                <div class="info-card-icon">🛒</div>
+                <div class="info-card-title">RetailMind</div>
+                <div class="info-card-sub">E-commerce · Automation</div>
+              </div>
+              <div class="info-card-back">
+                Order tracking, return processing, and upsell conversations automated end-to-end. Handles 15,000 customer interactions weekly with zero human agents.
+                <br><br>
+                <span class="badge badge-lime">NLP</span>
+                <span class="badge badge-pink">Shopify</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-card-wrap stagger-child">
+            <div class="info-card">
+              <div class="info-card-front">
+                <div class="info-card-icon">🎮</div>
+                <div class="info-card-title">VR Nexus</div>
+                <div class="info-card-sub">Gaming · 3D Visual</div>
+              </div>
+              <div class="info-card-back">
+                Real-time 3D AI companion characters rendered in-browser via WebGL. Procedural animations driven by NLP input — zero latency perception.
+                <br><br>
+                <span class="badge badge-cyan">Three.js</span>
+                <span class="badge badge-purple">AI NPC</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-card-wrap stagger-child">
+            <div class="info-card">
+              <div class="info-card-front">
+                <div class="info-card-icon">🏦</div>
+                <div class="info-card-title">FinClear</div>
+                <div class="info-card-sub">Finance · Automation</div>
+              </div>
+              <div class="info-card-back">
+                KYC document processing, fraud detection alerts, and client communication automation for a fintech startup. 70% operational cost reduction.
+                <br><br>
+                <span class="badge badge-lime">OCR</span>
+                <span class="badge badge-cyan">Compliance</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-card-wrap stagger-child">
+            <div class="info-card">
+              <div class="info-card-front">
+                <div class="info-card-icon">🌐</div>
+                <div class="info-card-title">DataVis 3D</div>
+                <div class="info-card-sub">Analytics · 3D Visual</div>
+              </div>
+              <div class="info-card-back">
+                Interactive 3D data visualisation dashboards with AI-narrated insights. Used by a Fortune 500 analytics team for board-level presentations.
+                <br><br>
+                <span class="badge badge-cyan">Three.js</span>
+                <span class="badge badge-lime">AI Narration</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <p class="text-muted" style="font-size:12px;margin-top:12px">Hover cards to reveal project details.</p>
+      </div>
+
+      <!-- Voice AI filter -->
+      <div class="tab-content" id="pf-voice">
+        <div class="grid">
+          <div class="card"><strong>🏥 MedDesk AI</strong><p>2,400 calls/day · 91% FCR · Healthcare network</p><span class="badge badge-cyan" style="margin-top:8px">Case Study</span></div>
+          <div class="card"><strong>📞 LegalLine</strong><p>AI receptionist for a 50-attorney law firm. Appointment booking, document intake.</p></div>
+          <div class="card"><strong>🚗 AutoService AI</strong><p>Outbound call campaign for vehicle service reminders — 68% booking rate.</p></div>
+        </div>
+      </div>
+
+      <!-- Automation filter -->
+      <div class="tab-content" id="pf-automation">
+        <div class="grid">
+          <div class="card"><strong>🏠 PropBot</strong><p>3× leads/month · Real estate · Lead qualification + booking</p><span class="badge badge-lime" style="margin-top:8px">Case Study</span></div>
+          <div class="card"><strong>🛒 RetailMind</strong><p>15K interactions/week · Zero human agents · E-commerce</p></div>
+          <div class="card"><strong>🏦 FinClear</strong><p>70% cost reduction · KYC + compliance · Fintech</p></div>
+        </div>
+      </div>
+
+      <!-- 3D Visual filter -->
+      <div class="tab-content" id="pf-3d">
+        <div class="grid">
+          <div class="card"><strong>🎮 VR Nexus</strong><p>WebGL 3D AI companions · In-browser · Real-time NLP</p><span class="badge badge-purple" style="margin-top:8px">Case Study</span></div>
+          <div class="card"><strong>🌐 DataVis 3D</strong><p>Fortune 500 analytics · AI-narrated 3D dashboards</p></div>
+          <div class="card"><strong>🏭 FactoryTwin</strong><p>Digital twin 3D factory floor monitor with predictive maintenance AI.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI Descriptions streaming -->
+    <section aria-label="AI Project Descriptions" class="js-reveal">
+      <h2 class="section-title">AI-Generated Project Insights</h2>
+      <p class="section-desc">Watch AI stream real-time project analysis.</p>
+
+      <div class="stream-box" id="portfolio-stream" aria-live="polite"></div>
+      <div class="ctas" style="margin-top:10px">
+        <button class="btn btn-primary btn-ripple" id="btn-portfolio-stream">▶ Analyse Portfolio</button>
+        <button class="btn btn-ripple" id="btn-portfolio-reset">↺ Reset</button>
+      </div>
+    </section>
+
+    <!-- Tech stack used -->
+    <section aria-label="Technology" class="js-reveal">
+      <h2 class="section-title">Technology Used Across Projects</h2>
+      <div class="grid grid-4" style="text-align:center">
+        <div class="card" data-tooltip="3D Rendering Engine">
+          <div style="font-size:28px">📐</div>
+          <strong>Three.js</strong>
+        </div>
+        <div class="card" data-tooltip="AI Language Model">
+          <div style="font-size:28px">🧠</div>
+          <strong>LLM Core</strong>
+        </div>
+        <div class="card" data-tooltip="Real-time Voice">
+          <div style="font-size:28px">🎙️</div>
+          <strong>Voice AI</strong>
+        </div>
+        <div class="card" data-tooltip="Workflow Engine">
+          <div style="font-size:28px">⚙️</div>
+          <strong>Workflows</strong>
+        </div>
+        <div class="card" data-tooltip="Node.js API">
+          <div style="font-size:28px">🖥️</div>
+          <strong>Node.js</strong>
+        </div>
+        <div class="card" data-tooltip="Data Streaming">
+          <div style="font-size:28px">📡</div>
+          <strong>Kafka</strong>
+        </div>
+        <div class="card" data-tooltip="Container Orchestration">
+          <div style="font-size:28px">🐳</div>
+          <strong>Kubernetes</strong>
+        </div>
+        <div class="card" data-tooltip="Primary Database">
+          <div style="font-size:28px">🗄️</div>
+          <strong>PostgreSQL</strong>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© Baitlab — AI That Works for You.</span>
+    <span>
+      <a href="../index.html">Home</a> ·
+      <a href="demo.html">Demo</a> ·
+      <a href="info-hub.html">Info Hub</a>
+    </span>
+  </footer>
+</div>
+
+<script type="module">
+  import { StreamingText } from '../js/streaming-text.js';
+  import { initComponents } from '../js/components.js';
+  import { initAnimations  } from '../js/animations.js';
+  import { initRevealOnScroll } from '../js/utils.js';
+
+  const portfolioLines = [
+    { text: '$ baitlab analyse --target=portfolio', type: 'cmd' },
+    { text: '[AI]  Loading 6 project profiles…', type: 'info' },
+    { text: '[AI]  Extracting KPIs and metrics…', type: 'info' },
+    { text: '[AI]  Cross-industry pattern detection…', type: 'info' },
+    { text: '',                                          type: 'dim' },
+    { text: '[INSIGHT]  Voice AI deployments average 87% customer satisfaction.', type: 'success' },
+    { text: '[INSIGHT]  Automation projects reduce operational costs by 55–70%.', type: 'success' },
+    { text: '[INSIGHT]  3D visual projects report 4× longer user engagement.', type: 'success' },
+    { text: '[INSIGHT]  Combined AI+3D deployments show highest retention rates.', type: 'success' },
+    { text: '',                                          type: 'dim' },
+    { text: '[AI]  Recommended next: scale voice AI to 10+ concurrent agents.', type: 'info' },
+    { text: '[DONE]  Analysis complete — 4 insights generated.', type: 'success' },
+  ];
+
+  let stream;
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initComponents();
+    initAnimations();
+    initRevealOnScroll();
+
+    const createStream = () =>
+      new StreamingText('#portfolio-stream', portfolioLines, { delay: 350, autoScroll: true });
+
+    stream = createStream();
+
+    document.getElementById('btn-portfolio-stream').addEventListener('click', () => stream.start());
+    document.getElementById('btn-portfolio-reset').addEventListener('click', () => {
+      stream.reset();
+      stream = createStream();
+    });
+  });
+</script>
+</body>
+</html>

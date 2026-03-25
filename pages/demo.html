@@ -1,79 +1,291 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/animations.css">
   <title>Live Demo — Baitlab</title>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/navbar.css" />
-  <link rel="stylesheet" href="../css/demo.css" />
-  <link rel="stylesheet" href="../css/responsive.css" />
+  <style>
+    .demo-wrap { max-width: 860px; margin: 32px auto; padding: 0 20px 60px; }
+    .demo-hero { text-align: center; padding: 32px 0 20px; }
+    .demo-hero h1 { font-size: clamp(22px, 4vw, 36px); margin-bottom: 10px; }
+    .demo-hero p { color: var(--muted); font-size: 14px; }
+
+    .examples-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 20px 0;
+      justify-content: center;
+    }
+    .example-btn {
+      background: rgba(0,229,255,0.06);
+      border: 1px solid rgba(0,229,255,0.2);
+      color: var(--cyan);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-family: var(--font);
+      font-size: 12px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .example-btn:hover { background: rgba(0,229,255,0.14); }
+
+    .demo-terminal {
+      margin: 12px 0;
+    }
+    .demo-terminal .terminal-body {
+      min-height: 280px;
+      max-height: 400px;
+      overflow-y: auto;
+      font-size: 13px;
+    }
+    .demo-terminal .terminal-body::-webkit-scrollbar { width: 4px; }
+    .demo-terminal .terminal-body::-webkit-scrollbar-thumb { background: rgba(0,229,255,0.2); border-radius: 2px; }
+
+    .demo-input-wrap {
+      margin-top: 12px;
+    }
+    .demo-input-label {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+
+    .features-preview {
+      margin-top: 40px;
+    }
+    .feature-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .feature-mini {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .feature-mini:hover { border-color: rgba(0,229,255,0.25); background: rgba(255,255,255,0.04); }
+    .feature-mini-icon { font-size: 22px; flex-shrink: 0; }
+    .feature-mini-text h4 { color: var(--cyan); font-size: 13px; margin-bottom: 3px; }
+    .feature-mini-text p { color: var(--muted); font-size: 12px; margin: 0; }
+
+    @media (max-width: 600px) { .feature-row { grid-template-columns: 1fr; } }
+  </style>
 </head>
 <body>
 
-  <!-- Navbar -->
   <nav class="navbar" aria-label="Main navigation">
-    <a class="navbar-brand" href="../index.html">Baitlab</a>
-    <button class="navbar-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
-    <ul class="navbar-links">
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="console.html">Console</a></li>
-      <li><a href="demo.html">Live Demo</a></li>
-      <li><a href="features.html">Features</a></li>
-      <li><a href="pricing.html">Pricing</a></li>
-      <li><a href="demo.html" class="navbar-cta">Try Now</a></li>
-    </ul>
+    <a class="brand" href="../index.html">Baitlab</a>
+    <button class="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav>
+      <a class="nav-btn" href="../index.html">&#127968; Home</a>
+      <a class="nav-btn" href="console.html">&#128187; Console</a>
+      <a class="nav-btn active" href="demo.html">&#9889; Live Demo</a>
+      <a class="nav-btn" href="features.html">&#128640; Features</a>
+      <a class="nav-btn" href="pricing.html">&#128176; Pricing</a>
+      <a class="nav-btn cta ripple-btn" href="demo.html">Try Free</a>
+    </nav>
   </nav>
 
-  <!-- Demo Interface -->
-  <main class="demo-wrapper" role="main">
-    <div class="demo-header">
-      <h1>⚡ Live Demo</h1>
-      <p>Type a command and watch Baitlab AI respond in real time.</p>
+  <div class="demo-wrap page-content">
+
+    <div class="demo-hero anim-fade-in">
+      <h1 class="gradient-text">&#9889; Baitlab Live Demo</h1>
+      <p>Try real AI commands below. Click an example or type your own.</p>
     </div>
 
-    <div class="demo-terminal" aria-label="Interactive AI terminal">
-      <!-- Title bar -->
-      <div class="demo-titlebar" aria-hidden="true">
-        <span class="dot red"></span>
-        <span class="dot yellow"></span>
-        <span class="dot green"></span>
-        <span class="demo-terminal-label">baitlab-demo — live session</span>
+    <div class="examples-row">
+      <button class="example-btn" data-cmd="call my barber and book for 3pm">&#128222; call barber</button>
+      <button class="example-btn" data-cmd="schedule team meeting tomorrow at 2pm">&#128197; schedule meeting</button>
+      <button class="example-btn" data-cmd="remind me about the project deadline friday">&#9200; remind me</button>
+      <button class="example-btn" data-cmd="automate my email replies">&#9881;&#65039; automate email</button>
+      <button class="example-btn" data-cmd="execute weekly report generation">&#9889; execute task</button>
+      <button class="example-btn" data-cmd="status">&#128994; status</button>
+      <button class="example-btn" data-cmd="help">&#10067; help</button>
+    </div>
+
+    <div class="demo-terminal terminal">
+      <div class="terminal-header">
+        <div class="terminal-dots">
+          <div class="dot red"></div>
+          <div class="dot yellow"></div>
+          <div class="dot green"></div>
+        </div>
+        <span class="terminal-title">baitlab &mdash; live demo</span>
+        <button
+          id="clearDemoBtn"
+          style="margin-left:auto; background:none; border:none; color:var(--muted); cursor:pointer; font-size:12px; font-family:var(--font);"
+          title="Clear"
+        >&#10005; clear</button>
       </div>
-
-      <!-- Output log -->
-      <div id="demo-output" class="demo-output" aria-live="polite" aria-label="AI response output"></div>
-
-      <!-- Input row -->
-      <div class="demo-input-row">
-        <span class="demo-prompt-label" aria-hidden="true">$&gt;</span>
+      <div class="terminal-body" id="demoOutput" aria-live="polite">
+        <div class="terminal-line info">&#9889; Baitlab Live Demo &mdash; AI command interface</div>
+        <div class="terminal-line info">Click an example above or type your own command below.</div>
+        <div class="terminal-line info">&nbsp;</div>
+      </div>
+      <div class="input-row">
+        <span class="prompt-symbol">&#62;</span>
         <input
-          id="demo-input"
+          class="cmd-input"
+          id="demoInput"
           type="text"
-          placeholder="e.g. call barber and book appointment"
-          aria-label="Enter AI command"
+          placeholder='Try "call barber", "schedule meeting", "remind me..."'
           autocomplete="off"
           spellcheck="false"
-        />
-        <button id="demo-run-btn" aria-label="Run command">Run</button>
+          aria-label="Demo command input"
+        >
+        <button class="cmd-send" id="demoSend">&#9654; Send</button>
       </div>
     </div>
 
-    <!-- Hint chips -->
-    <div class="demo-hints">
-      <h3>Try these commands</h3>
-      <div class="hint-chips">
-        <span class="hint-chip" role="button" tabindex="0">&gt; call barber and book appointment</span>
-        <span class="hint-chip" role="button" tabindex="0">&gt; schedule meeting with client tomorrow</span>
-        <span class="hint-chip" role="button" tabindex="0">&gt; remind me about project deadline</span>
-        <span class="hint-chip" role="button" tabindex="0">&gt; automate daily reports</span>
-        <span class="hint-chip" role="button" tabindex="0">&gt; execute workflow</span>
+    <div class="demo-input-label" style="text-align:center; margin-top: 8px;">
+      &#128161; Tip: Type <code style="color:var(--lime)">set-token YOUR_HF_TOKEN</code> to enable real HuggingFace AI
+    </div>
+
+    <div class="features-preview section">
+      <div class="section-title">What You Can Do</div>
+      <p class="section-sub">Click any feature card to try it in the demo above.</p>
+      <div class="feature-row">
+        <div class="feature-mini" data-cmd="call my barber and book for 3pm">
+          <div class="feature-mini-icon">&#128222;</div>
+          <div class="feature-mini-text">
+            <h4>AI Calling</h4>
+            <p>Initiate AI-powered calls to contacts, businesses, or services.</p>
+          </div>
+        </div>
+        <div class="feature-mini" data-cmd="schedule team meeting tomorrow at 2pm">
+          <div class="feature-mini-icon">&#128197;</div>
+          <div class="feature-mini-text">
+            <h4>Smart Scheduling</h4>
+            <p>Book meetings, set appointments, and manage your calendar.</p>
+          </div>
+        </div>
+        <div class="feature-mini" data-cmd="remind me to take medication at 8am daily">
+          <div class="feature-mini-icon">&#9200;</div>
+          <div class="feature-mini-text">
+            <h4>Reminders</h4>
+            <p>Set smart reminders for tasks, deadlines, and appointments.</p>
+          </div>
+        </div>
+        <div class="feature-mini" data-cmd="automate daily standup email to team">
+          <div class="feature-mini-icon">&#9881;&#65039;</div>
+          <div class="feature-mini-text">
+            <h4>Automation</h4>
+            <p>Create workflows that run automatically on your behalf.</p>
+          </div>
+        </div>
+        <div class="feature-mini" data-cmd="execute data backup and send summary report">
+          <div class="feature-mini-icon">&#9889;</div>
+          <div class="feature-mini-text">
+            <h4>Task Execution</h4>
+            <p>Execute complex multi-step tasks with a single command.</p>
+          </div>
+        </div>
+        <div class="feature-mini" data-cmd="status">
+          <div class="feature-mini-icon">&#128994;</div>
+          <div class="feature-mini-text">
+            <h4>System Status</h4>
+            <p>Check the status of all Baitlab AI services and modules.</p>
+          </div>
+        </div>
       </div>
     </div>
-  </main>
 
+  </div>
+
+  <script src="../js/ai.js"></script>
   <script src="../js/utils.js"></script>
-  <script src="../js/router.js"></script>
-  <script src="../js/demo-handler.js"></script>
+  <script>
+    const output   = document.getElementById('demoOutput');
+    const input    = document.getElementById('demoInput');
+    const sendBtn  = document.getElementById('demoSend');
+    const clearBtn = document.getElementById('clearDemoBtn');
+
+    function addLine(text, type) {
+      const lines = text.split('\n');
+      lines.forEach(line => {
+        const div = document.createElement('div');
+        div.className = 'terminal-line' + (type ? ' ' + type : '');
+        div.textContent = line;
+        output.appendChild(div);
+      });
+      output.scrollTop = output.scrollHeight;
+    }
+
+    async function runDemo(cmd) {
+      cmd = cmd.trim();
+      if (!cmd) return;
+
+      if (cmd.toLowerCase() === 'clear') { output.innerHTML = ''; addLine('Cleared.', 'info'); return; }
+
+      // set-token support
+      const tokenMatch = cmd.match(/^set-token\s+(\S+)$/i);
+      if (tokenMatch) {
+        localStorage.setItem('baitlab_hf_token', tokenMatch[1]);
+        window.BAITLAB_HF_TOKEN = tokenMatch[1];
+        addLine('> ' + cmd, 'prompt');
+        addLine('[OK] Token saved. Real AI enabled.', 'response');
+        return;
+      }
+
+      addLine('> ' + cmd, 'prompt');
+
+      const thinkDiv = document.createElement('div');
+      thinkDiv.className = 'terminal-line info';
+      thinkDiv.innerHTML = '<span class="spinner"></span> Processing...';
+      output.appendChild(thinkDiv);
+      output.scrollTop = output.scrollHeight;
+
+      const responseDiv = document.createElement('div');
+      responseDiv.className = 'terminal-line response';
+
+      await BaitlabAI.respond(cmd, (chunk) => {
+        if (thinkDiv.parentNode) {
+          output.removeChild(thinkDiv);
+          output.appendChild(responseDiv);
+        }
+        responseDiv.textContent += chunk;
+        output.scrollTop = output.scrollHeight;
+      });
+
+      if (thinkDiv.parentNode) {
+        output.removeChild(thinkDiv);
+        const fallback = BaitlabAI.simulate(cmd);
+        addLine(fallback, 'response');
+      }
+
+      addLine('', '');
+    }
+
+    sendBtn.addEventListener('click', () => { const c = input.value; input.value = ''; runDemo(c); });
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') { const c = input.value; input.value = ''; runDemo(c); } });
+    clearBtn.addEventListener('click', () => { output.innerHTML = ''; addLine('Cleared.', 'info'); });
+
+    document.querySelectorAll('.example-btn').forEach(btn => {
+      btn.addEventListener('click', () => { input.value = btn.dataset.cmd; input.focus(); });
+    });
+    document.querySelectorAll('.feature-mini').forEach(card => {
+      card.addEventListener('click', () => {
+        const cmd = card.dataset.cmd;
+        input.value = cmd;
+        runDemo(cmd);
+        input.value = '';
+      });
+    });
+
+    input.focus();
+  </script>
 </body>
 </html>

@@ -1,73 +1,291 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/animations.css">
   <title>Console — Baitlab</title>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/navbar.css" />
-  <link rel="stylesheet" href="../css/console.css" />
-  <link rel="stylesheet" href="../css/responsive.css" />
+  <style>
+    .console-wrap {
+      max-width: 900px;
+      margin: 32px auto;
+      padding: 0 20px 60px;
+    }
+    .console-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .console-title { color: var(--cyan); font-size: 20px; font-weight: 700; }
+    .console-meta { color: var(--muted); font-size: 12px; }
+
+    .full-terminal {
+      height: calc(100vh - 230px);
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+    }
+    .full-terminal .terminal { flex: 1; display: flex; flex-direction: column; }
+    .full-terminal .terminal-body {
+      flex: 1;
+      overflow-y: auto;
+      min-height: 0;
+      font-size: 13px;
+    }
+    .full-terminal .terminal-body::-webkit-scrollbar { width: 4px; }
+    .full-terminal .terminal-body::-webkit-scrollbar-track { background: transparent; }
+    .full-terminal .terminal-body::-webkit-scrollbar-thumb { background: rgba(0,229,255,0.2); border-radius: 2px; }
+
+    .sidebar {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .cmd-chip {
+      background: rgba(0,255,102,0.08);
+      border: 1px solid rgba(0,255,102,0.2);
+      color: var(--lime);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: background 0.2s;
+      user-select: none;
+    }
+    .cmd-chip:hover { background: rgba(0,255,102,0.18); }
+
+    .status-bar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 8px 0;
+      border-top: 1px solid var(--border);
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--lime); display: inline-block; animation: pulse 2s infinite; }
+
+    .token-note {
+      background: rgba(0,229,255,0.05);
+      border: 1px solid rgba(0,229,255,0.15);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .token-note a { color: var(--cyan); }
+  </style>
 </head>
 <body>
 
-  <!-- Navbar -->
   <nav class="navbar" aria-label="Main navigation">
-    <a class="navbar-brand" href="../index.html">Baitlab</a>
-    <button class="navbar-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
-    <ul class="navbar-links">
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="console.html">Console</a></li>
-      <li><a href="demo.html">Live Demo</a></li>
-      <li><a href="features.html">Features</a></li>
-      <li><a href="pricing.html">Pricing</a></li>
-      <li><a href="demo.html" class="navbar-cta">Try Now</a></li>
-    </ul>
+    <a class="brand" href="../index.html">Baitlab</a>
+    <button class="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav>
+      <a class="nav-btn" href="../index.html">&#127968; Home</a>
+      <a class="nav-btn active" href="console.html">&#128187; Console</a>
+      <a class="nav-btn" href="demo.html">&#9889; Live Demo</a>
+      <a class="nav-btn" href="features.html">&#128640; Features</a>
+      <a class="nav-btn" href="pricing.html">&#128176; Pricing</a>
+      <a class="nav-btn cta ripple-btn" href="demo.html">Try Free</a>
+    </nav>
   </nav>
 
-  <!-- Console -->
-  <div class="console-wrapper">
-    <div class="console-container" role="main">
-      <div class="console-titlebar" aria-hidden="true">
-        <span class="console-dot red"></span>
-        <span class="console-dot yellow"></span>
-        <span class="console-dot green"></span>
-        <span class="console-title">baitlab-console — zsh</span>
+  <div class="console-wrap page-content">
+
+    <div class="console-header-bar">
+      <div>
+        <div class="console-title">&#128187; Baitlab Console</div>
+        <div class="console-meta">Interactive AI terminal &mdash; type commands below</div>
       </div>
-      <div class="console-body" aria-label="Console output">
-        <div class="console-line">
-          <span class="console-prompt">baitlab@ai:~$</span>
-          <span id="console-out"></span>
-          <span class="cursor" aria-hidden="true"></span>
+      <button class="btn-outline" id="clearBtn" style="font-size:12px; padding:6px 14px;">Clear</button>
+    </div>
+
+    <div class="token-note">
+      &#128273; <strong>Real AI:</strong> Type <code style="color:var(--lime)">set-token YOUR_HF_TOKEN</code> to enable HuggingFace AI responses.
+      Get a free token at <a href="https://huggingface.co/settings/tokens" target="_blank" rel="noopener">huggingface.co</a>.
+      Without a token, smart simulated responses are used.
+    </div>
+
+    <div class="sidebar">
+      <span class="cmd-chip" data-cmd="help">help</span>
+      <span class="cmd-chip" data-cmd="status">status</span>
+      <span class="cmd-chip" data-cmd="call barber">call barber</span>
+      <span class="cmd-chip" data-cmd="schedule meeting tomorrow 2pm">schedule meeting</span>
+      <span class="cmd-chip" data-cmd="remind me about standup at 9am">remind me</span>
+      <span class="cmd-chip" data-cmd="automate email replies">automate</span>
+    </div>
+
+    <div class="full-terminal">
+      <div class="terminal">
+        <div class="terminal-header">
+          <div class="terminal-dots">
+            <div class="dot red"></div>
+            <div class="dot yellow"></div>
+            <div class="dot green"></div>
+          </div>
+          <span class="terminal-title">baitlab@console:~$</span>
+        </div>
+        <div class="terminal-body" id="consoleOutput" aria-live="polite">
+          <div class="terminal-line info">&#128187; Baitlab Console v1.0 &mdash; AI-powered terminal</div>
+          <div class="terminal-line info">Type <span style="color:var(--lime)">help</span> for available commands. Press Enter to execute.</div>
+          <div class="terminal-line info">&nbsp;</div>
+        </div>
+        <div class="input-row">
+          <span class="prompt-symbol">$</span>
+          <input
+            class="cmd-input"
+            id="consoleInput"
+            type="text"
+            placeholder="Type a command... (e.g. call barber, schedule meeting)"
+            autocomplete="off"
+            spellcheck="false"
+            aria-label="Console input"
+          >
+          <button class="cmd-send" id="consoleSend" aria-label="Send command">&#x23CE; Run</button>
         </div>
       </div>
     </div>
+
+    <div class="status-bar">
+      <span><span class="status-dot"></span> AI Ready</span>
+      <span id="statusTokenInfo">Token: not set (simulated mode)</span>
+      <span id="cmdCount">Commands: 0</span>
+    </div>
+
   </div>
 
+  <script src="../js/ai.js"></script>
   <script src="../js/utils.js"></script>
-  <script src="../js/router.js"></script>
   <script>
-    // Typewriter intro for console page
-    var lines = [
-      'baitlab --version',
-      'Baitlab AI v1.0.0',
-      'Ready for command input.',
-    ];
-    var el = document.getElementById('console-out');
-    var li = 0, ci = 0;
-    function step() {
-      if (li >= lines.length) return;
-      var line = lines[li];
-      if (ci < line.length) {
-        el.textContent += line[ci++];
-        setTimeout(step, 35);
-      } else {
-        el.textContent += '\n';
-        ci = 0; li++;
-        setTimeout(step, 800);
-      }
+    const output = document.getElementById('consoleOutput');
+    const input  = document.getElementById('consoleInput');
+    const sendBtn = document.getElementById('consoleSend');
+    const clearBtn = document.getElementById('clearBtn');
+    const statusTokenInfo = document.getElementById('statusTokenInfo');
+    const cmdCountEl = document.getElementById('cmdCount');
+
+    let cmdCount = 0;
+    const history = [];
+    let histIdx = -1;
+
+    function updateTokenStatus() {
+      const token = BaitlabAI.getToken();
+      statusTokenInfo.textContent = token
+        ? 'Token: set (real AI mode)'
+        : 'Token: not set (simulated mode)';
     }
-    step();
+    updateTokenStatus();
+
+    function addLine(text, type = '') {
+      const lines = text.split('\n');
+      lines.forEach(line => {
+        const div = document.createElement('div');
+        div.className = 'terminal-line' + (type ? ' ' + type : '');
+        div.textContent = line;
+        output.appendChild(div);
+      });
+      output.scrollTop = output.scrollHeight;
+    }
+
+    async function runCommand(cmd) {
+      cmd = cmd.trim();
+      if (!cmd) return;
+
+      // Clear command
+      if (cmd.toLowerCase() === 'clear') {
+        output.innerHTML = '';
+        addLine('Terminal cleared.', 'info');
+        return;
+      }
+
+      // Set token command
+      const tokenMatch = cmd.match(/^set-token\s+(\S+)$/i);
+      if (tokenMatch) {
+        localStorage.setItem('baitlab_hf_token', tokenMatch[1]);
+        window.BAITLAB_HF_TOKEN = tokenMatch[1];
+        addLine('$ ' + cmd, 'prompt');
+        addLine('[OK] Token saved. Real AI mode enabled.', 'response');
+        updateTokenStatus();
+        return;
+      }
+
+      addLine('$ ' + cmd, 'prompt');
+
+      // Show thinking
+      const thinkDiv = document.createElement('div');
+      thinkDiv.className = 'terminal-line info';
+      thinkDiv.innerHTML = '<span class="spinner"></span> AI thinking...';
+      output.appendChild(thinkDiv);
+      output.scrollTop = output.scrollHeight;
+
+      // Stream response
+      const responseDiv = document.createElement('div');
+      responseDiv.className = 'terminal-line response';
+      responseDiv.textContent = '';
+
+      await BaitlabAI.respond(cmd, (chunk) => {
+        if (thinkDiv.parentNode) { output.removeChild(thinkDiv); output.appendChild(responseDiv); }
+        responseDiv.textContent += chunk;
+        output.scrollTop = output.scrollHeight;
+      });
+
+      if (thinkDiv.parentNode) {
+        output.removeChild(thinkDiv);
+        // Fallback if no chunk came
+        const fallback = BaitlabAI.simulate(cmd);
+        addLine(fallback, 'response');
+      }
+
+      addLine('', '');
+      cmdCount++;
+      cmdCountEl.textContent = 'Commands: ' + cmdCount;
+      history.unshift(cmd);
+      histIdx = -1;
+    }
+
+    sendBtn.addEventListener('click', () => {
+      const cmd = input.value;
+      input.value = '';
+      runCommand(cmd);
+    });
+
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const cmd = input.value;
+        input.value = '';
+        runCommand(cmd);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (histIdx < history.length - 1) { histIdx++; input.value = history[histIdx]; }
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (histIdx > 0) { histIdx--; input.value = history[histIdx]; }
+        else { histIdx = -1; input.value = ''; }
+      }
+    });
+
+    clearBtn.addEventListener('click', () => {
+      output.innerHTML = '';
+      addLine('Terminal cleared.', 'info');
+    });
+
+    // Quick command chips
+    document.querySelectorAll('.cmd-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        input.value = chip.dataset.cmd;
+        input.focus();
+      });
+    });
+
+    input.focus();
   </script>
 </body>
 </html>

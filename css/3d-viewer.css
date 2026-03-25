@@ -1,0 +1,229 @@
+/* ============================================================
+   Baitlab — 3D Viewer Styles
+   ============================================================ */
+
+/* ── Viewer Container ───────────────────────────────────────── */
+.viewer-wrap {
+  position: relative;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  background: #050505;
+  box-shadow: 0 0 60px rgba(0, 229, 255, 0.1), inset 0 0 40px rgba(0, 0, 0, 0.6);
+}
+
+#threejs-canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  cursor: grab;
+}
+
+#threejs-canvas:active { cursor: grabbing; }
+
+/* ── Viewer Overlay UI ──────────────────────────────────────── */
+.viewer-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.viewer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 14px 16px;
+  pointer-events: all;
+}
+
+.viewer-title {
+  font-size: 13px;
+  color: rgba(0, 229, 255, 0.8);
+  background: rgba(0, 0, 0, 0.55);
+  padding: 5px 10px;
+  border-radius: 6px;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(0, 229, 255, 0.15);
+}
+
+.viewer-controls {
+  display: flex;
+  gap: 6px;
+  pointer-events: all;
+}
+
+.viewer-ctrl-btn {
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(200, 246, 200, 0.7);
+  width: 32px; height: 32px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(6px);
+  transition: background 0.2s, color 0.2s;
+}
+
+.viewer-ctrl-btn:hover {
+  background: rgba(0, 229, 255, 0.15);
+  color: #00e5ff;
+  border-color: rgba(0, 229, 255, 0.3);
+}
+
+/* ── Loading Overlay ────────────────────────────────────────── */
+.viewer-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.82);
+  z-index: 20;
+  backdrop-filter: blur(2px);
+  transition: opacity 0.4s ease;
+}
+
+.viewer-loading.hidden { opacity: 0; pointer-events: none; }
+
+.loader-ring {
+  width: 52px; height: 52px;
+  border: 3px solid rgba(0, 229, 255, 0.15);
+  border-top-color: #00e5ff;
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+  margin-bottom: 14px;
+}
+
+.loader-text {
+  font-size: 13px;
+  color: rgba(0, 229, 255, 0.6);
+  letter-spacing: 1px;
+}
+
+/* ── Info Panel ─────────────────────────────────────────────── */
+.viewer-info-panel {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(0, 229, 255, 0.15);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 12px;
+  color: rgba(200, 246, 200, 0.6);
+  backdrop-filter: blur(8px);
+  pointer-events: none;
+  line-height: 1.7;
+  max-width: 200px;
+}
+
+.viewer-info-panel span { color: #00e5ff; }
+
+/* ── Crosshair ──────────────────────────────────────────────── */
+.viewer-crosshair {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px; height: 20px;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.viewer-crosshair::before,
+.viewer-crosshair::after {
+  content: "";
+  position: absolute;
+  background: #00e5ff;
+}
+
+.viewer-crosshair::before { width: 100%; height: 1px; top: 50%; left: 0; }
+.viewer-crosshair::after  { width: 1px; height: 100%; left: 50%; top: 0; }
+
+/* ── Grid Floor Effect ──────────────────────────────────────── */
+.viewer-grid-hint {
+  position: absolute;
+  bottom: 14px; right: 14px;
+  font-size: 11px;
+  color: rgba(0, 229, 255, 0.35);
+  pointer-events: none;
+  writing-mode: horizontal-tb;
+}
+
+/* ── Model Selector ─────────────────────────────────────────── */
+.model-selector {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.model-thumb {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  border: 2px solid rgba(255,255,255,0.06);
+  background: rgba(0,0,0,0.5);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  gap: 4px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  overflow: hidden;
+}
+
+.model-thumb span { font-size: 10px; color: rgba(200, 246, 200, 0.5); }
+
+.model-thumb:hover,
+.model-thumb.active {
+  border-color: rgba(0, 229, 255, 0.5);
+  box-shadow: 0 0 16px rgba(0, 229, 255, 0.15);
+}
+
+/* ── Stats Overlay ──────────────────────────────────────────── */
+.viewer-stats {
+  position: absolute;
+  top: 56px;
+  right: 14px;
+  font-size: 11px;
+  color: rgba(0, 229, 255, 0.5);
+  line-height: 1.8;
+  pointer-events: none;
+  text-align: right;
+}
+
+/* ── Lighting Control ───────────────────────────────────────── */
+.lighting-presets {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.lighting-btn {
+  padding: 6px 12px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  color: rgba(200, 246, 200, 0.6);
+  font-size: 12px;
+  cursor: pointer;
+  font-family: "JetBrains Mono", monospace;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.lighting-btn:hover,
+.lighting-btn.active {
+  border-color: rgba(0, 229, 255, 0.4);
+  color: #00e5ff;
+}
