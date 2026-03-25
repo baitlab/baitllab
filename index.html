@@ -8,35 +8,53 @@
   <link rel="stylesheet" href="css/animations.css">
   <title>Baitlab — Your AI That Talks, Works, and Runs Everything</title>
   <style>
-    .hero { padding: 64px 0 40px; text-align: center; }
-    .hero-eyebrow { color: var(--lime); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
-    .hero-title { font-size: clamp(28px, 5vw, 52px); line-height: 1.1; margin-bottom: 16px; }
-    .hero-sub { color: var(--muted); font-size: 15px; max-width: 560px; margin: 0 auto 28px; line-height: 1.7; }
-    .hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
-    .hero-terminal { margin: 0 auto; max-width: 680px; }
-    .feature-emoji { font-size: 28px; margin-bottom: 10px; }
-    .card h3 { color: var(--cyan); margin-bottom: 6px; font-size: 15px; }
-    .card p { color: var(--muted); font-size: 13px; line-height: 1.6; margin: 0; }
-    .quick-start { background: rgba(0,229,255,0.04); border: 1px solid rgba(0,229,255,0.12); border-radius: 10px; padding: 24px 28px; }
-    .quick-start ol { padding-left: 20px; color: var(--muted); font-size: 14px; line-height: 2; }
-    .quick-start ol li strong { color: var(--text); }
-    .cta-strip { text-align: center; padding: 40px 0; }
-    .cta-strip p { color: var(--muted); font-size: 14px; margin-top: 12px; }
-    .contact-section label { display: block; font-size: 13px; margin: 10px 0 4px; color: var(--muted); }
-    .contact-section input, .contact-section textarea {
-      width: 100%; padding: 9px 12px; border-radius: 6px;
-      border: 1px solid var(--border); background: rgba(255,255,255,0.03);
-      color: var(--text); font-family: var(--font); font-size: 13px;
-    }
-    .contact-section input:focus, .contact-section textarea:focus { outline: none; border-color: rgba(0,229,255,0.3); }
-    .contact-section .submit-btn {
-      margin-top: 12px; padding: 9px 20px; border-radius: 6px; border: none;
-      background: var(--cyan); color: #000; cursor: pointer; font-family: var(--font); font-weight: 700;
-    }
-    footer { color: var(--muted); font-size: 13px; padding: 24px 0; border-top: 1px solid var(--border); margin-top: 60px; text-align: center; }
+    :root{ --bg:#000; --cyan:#00e5ff; --lime:#00ff66; --muted:rgba(255,255,255,0.06); --text:#c7f6c7; }
+    html,body{height:100%;margin:0;background:var(--bg);font-family:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, "Courier New", monospace;color:var(--text);}
+    .page{max-width:1100px;margin:40px auto;padding:28px;background:linear-gradient(180deg, rgba(8,10,8,0.95), rgba(0,0,0,0.95));border-radius:8px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 18px 60px rgba(0,0,0,0.6);}
+    .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+    .brand{font-weight:700;font-size:18px;color:var(--cyan)}
+    .nav{display:flex;gap:12px}
+    .btn{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--text);padding:8px 12px;border-radius:6px;cursor:pointer}
+    .hero{padding:24px 4px}
+    .headline{font-size:34px;line-height:1.05;color:var(--text);margin:6px 0}
+    .sub{color:var(--muted);margin-bottom:16px}
+    .ctas{display:flex;gap:10px;flex-wrap:wrap}
+    .cta-primary{background:linear-gradient(90deg,var(--cyan),var(--lime));color:#000;padding:10px 16px;border-radius:8px;font-weight:700;border:none;cursor:pointer}
+    .terminal-box{background:rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.03);padding:18px;border-radius:8px;margin-top:18px;min-height:160px}
+    .output{white-space:pre-wrap;font-size:15px}
+    .caret{display:inline-block;width:10px;height:1.2em;background:var(--text);margin-left:6px;vertical-align:bottom;animation:blink 1s steps(2,start) infinite}
+    @keyframes blink{50%{opacity:0}}
+    section{margin-top:26px}
+    h2{color:var(--cyan);margin-bottom:8px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(0,0,0,0.02));padding:14px;border-radius:8px;border:1px solid rgba(255,255,255,0.02)}
+    .contact-form{margin-top:12px;background:rgba(255,255,255,0.02);padding:14px;border-radius:8px}
+    label{display:block;font-size:13px;margin-bottom:6px;color:var(--muted)}
+    input,textarea{width:100%;padding:8px;border-radius:6px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text);}
+    .submit{margin-top:8px;padding:8px 14px;border-radius:6px;border:none;background:var(--cyan);color:#000;cursor:pointer;font-weight:700}
+    footer{margin-top:28px;color:var(--muted);font-size:13px}
+    @media(max-width:880px){.grid{grid-template-columns:1fr} .headline{font-size:26px}}
+    /* Nav link styles */
+    .nav a{color:var(--text);text-decoration:none;padding:8px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.04);transition:border-color .2s,color .2s;font-size:14px}
+    .nav a:hover{border-color:var(--cyan);color:var(--cyan)}
+    /* New page links banner */
+    .hero-page-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;margin-bottom:2px}
+    .hero-page-link{display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:8px;border:1px solid rgba(0,229,255,0.18);color:var(--cyan);text-decoration:none;font-size:13px;background:rgba(0,229,255,0.04);transition:all .2s}
+    .hero-page-link:hover{background:rgba(0,229,255,0.1);border-color:var(--cyan)}
   </style>
 </head>
 <body>
+  <div class="page" role="main">
+    <header class="header">
+      <div class="brand">Baitlab</div>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="viewer.html">3D Viewer</a>
+        <a href="slides.html">Slides</a>
+        <a href="features.html">Features</a>
+        <button class="btn">Pricing</button>
+        <button class="btn">Contact</button>
+      </nav>
+    </header>
 
   <nav class="navbar" aria-label="Main navigation">
     <a class="brand" href="index.html">Baitlab</a>
@@ -53,7 +71,16 @@
     </nav>
   </nav>
 
-  <div class="page-wrap page-content">
+        <div class="hero-page-links">
+          <a href="viewer.html" class="hero-page-link">🎮 AI 3D Viewer</a>
+          <a href="slides.html" class="hero-page-link">📽 Slides</a>
+          <a href="features.html" class="hero-page-link">⚡ Features &amp; Components</a>
+        </div>
+
+        <div class="terminal-box" aria-live="polite">
+          <div id="typeout" class="output"></div><span class="caret" aria-hidden="true"></span>
+        </div>
+      </section>
 
     <section class="hero anim-fade-in" aria-label="Hero">
       <div class="hero-eyebrow">&#129302; AI-Powered Platform</div>
