@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Console</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+        }
+        .console {
+            border: 1px solid #444;
+            padding: 15px;
+            height: 300px;
+            overflow-y: auto;
+            background-color: #1e1e1e;
+        }
+        input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #444;
+            background-color: #2e2e2e;
+            color: #ffffff;
+        }
+        input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        .animate {
+            transition: opacity 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <h1>Interactive Console</h1>
+    <div class="console" id="console"></div>
+    <input type="text" id="commandInput" placeholder="Type your command here..." />
+
+    <script>
+        const consoleDiv = document.getElementById('console');
+        const commandInput = document.getElementById('commandInput');
+
+        commandInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                const command = commandInput.value;
+                displayCommand(command);
+                commandInput.value = '';
+                // Simulate real AI response
+                simulateAIResponse(command);
+            }
+        });
+
+        function displayCommand(command) {
+            const commandElement = document.createElement('div');
+            commandElement.textContent = `> ${command}`;
+            commandElement.classList.add('animate');
+            consoleDiv.appendChild(commandElement);
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+        }
+
+        function simulateAIResponse(command) {
+            setTimeout(() => {
+                const responseElement = document.createElement('div');
+                responseElement.textContent = `AI Response: This is a simulated response for the command: ${command}`;
+                responseElement.classList.add('animate');
+                consoleDiv.appendChild(responseElement);
+                consoleDiv.scrollTop = consoleDiv.scrollHeight;
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
