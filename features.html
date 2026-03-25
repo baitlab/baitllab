@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <title>Baitlab — Features & Components</title>
+  <style>
+    :root{ --bg:#000; --cyan:#00e5ff; --lime:#00ff66; --muted:rgba(255,255,255,0.06); --text:#c7f6c7; }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{min-height:100%;background:var(--bg);font-family:"JetBrains Mono",ui-monospace,monospace;color:var(--text);}
+
+    /* NAV */
+    .topbar{display:flex;justify-content:space-between;align-items:center;padding:14px 28px;border-bottom:1px solid rgba(255,255,255,0.05);background:rgba(0,0,0,0.9);position:sticky;top:0;z-index:200}
+    .brand{font-weight:700;font-size:18px;color:var(--cyan);text-decoration:none}
+    .nav{display:flex;gap:10px}
+    .nav a{color:var(--text);text-decoration:none;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.04);font-size:13px;transition:border-color .2s}
+    .nav a:hover,.nav a.active{border-color:var(--cyan);color:var(--cyan)}
+
+    /* LAYOUT */
+    .content{max-width:1100px;margin:0 auto;padding:32px 28px}
+    .page-title{font-size:28px;color:var(--cyan);margin-bottom:8px}
+    .page-sub{color:rgba(199,246,199,.45);font-size:14px;margin-bottom:36px}
+    .section{margin-bottom:48px}
+    .section-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);margin-bottom:6px}
+    .section-title{font-size:18px;color:var(--text);margin-bottom:6px}
+    .section-desc{font-size:13px;color:rgba(199,246,199,.5);margin-bottom:20px}
+    .divider{height:1px;background:rgba(255,255,255,.05);margin:40px 0}
+
+    /* FEATURE CARDS */
+    .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    @media(max-width:800px){.feature-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:500px){.feature-grid{grid-template-columns:1fr}}
+    .feature-card{background:linear-gradient(180deg,rgba(255,255,255,.015),rgba(0,0,0,.02));border:1px solid rgba(255,255,255,.04);border-radius:10px;padding:20px;transition:all .25s;cursor:pointer;position:relative;overflow:hidden}
+    .feature-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at top left,rgba(0,229,255,.04),transparent 70%);opacity:0;transition:opacity .3s}
+    .feature-card:hover{border-color:rgba(0,229,255,.25);transform:translateY(-2px)}
+    .feature-card:hover::before{opacity:1}
+    .card-icon{font-size:28px;margin-bottom:12px}
+    .card-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:6px}
+    .card-desc{font-size:12px;color:rgba(199,246,199,.55);line-height:1.65}
+    .card-badge{display:inline-block;margin-top:10px;padding:3px 8px;border-radius:10px;font-size:10px;background:rgba(0,229,255,.1);color:var(--cyan);border:1px solid rgba(0,229,255,.15)}
+
+    /* INFO CARDS (horizontal) */
+    .info-row{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    @media(max-width:600px){.info-row{grid-template-columns:1fr}}
+    .info-card-h{display:flex;gap:16px;align-items:flex-start;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);border-radius:10px;padding:18px;transition:border-color .2s}
+    .info-card-h:hover{border-color:rgba(0,229,255,.2)}
+    .ic-icon{font-size:24px;flex-shrink:0;margin-top:2px}
+    .ic-body h4{font-size:13px;font-weight:700;margin-bottom:4px}
+    .ic-body p{font-size:12px;color:rgba(199,246,199,.55);line-height:1.6}
+
+    /* BUTTONS SHOWCASE */
+    .btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+    .btn{padding:9px 18px;border-radius:7px;font-family:inherit;font-size:13px;cursor:pointer;font-weight:700;transition:all .2s}
+    .btn-primary{background:linear-gradient(90deg,var(--cyan),var(--lime));color:#000;border:none}
+    .btn-primary:hover{opacity:.88;transform:translateY(-1px)}
+    .btn-outline{background:transparent;border:1px solid rgba(0,229,255,.4);color:var(--cyan)}
+    .btn-outline:hover{background:rgba(0,229,255,.08)}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,.06);color:var(--text)}
+    .btn-ghost:hover{border-color:rgba(255,255,255,.2)}
+    .btn-danger{background:transparent;border:1px solid rgba(255,77,100,.4);color:#ff4d64}
+    .btn-danger:hover{background:rgba(255,77,100,.08)}
+    .btn-lime{background:linear-gradient(90deg,var(--lime),#00ccaa);color:#000;border:none}
+    .btn-sm{padding:5px 12px;font-size:11px;border-radius:5px}
+    .btn-lg{padding:13px 24px;font-size:15px;border-radius:9px}
+    .btn-icon{display:inline-flex;align-items:center;gap:6px}
+
+    /* FORM */
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media(max-width:600px){.form-grid{grid-template-columns:1fr}}
+    .form-group{display:flex;flex-direction:column;gap:6px}
+    .form-group.full{grid-column:1/-1}
+    .form-label{font-size:12px;color:rgba(199,246,199,.6)}
+    .form-input{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);color:var(--text);padding:9px 12px;border-radius:7px;font-family:inherit;font-size:13px;transition:border-color .2s}
+    .form-input:focus{outline:none;border-color:var(--cyan)}
+    .form-input::placeholder{color:rgba(199,246,199,.2)}
+    textarea.form-input{resize:vertical;min-height:90px}
+    .form-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2300e5ff'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center}
+    .form-check{display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px}
+    .form-check input[type=checkbox]{accent-color:var(--cyan);width:15px;height:15px;cursor:pointer}
+    .form-submit{margin-top:6px;padding:10px 20px;border-radius:7px;border:none;background:linear-gradient(90deg,var(--cyan),var(--lime));color:#000;font-weight:700;font-family:inherit;font-size:14px;cursor:pointer;transition:opacity .2s}
+    .form-submit:hover{opacity:.88}
+    .form-note{font-size:11px;color:rgba(199,246,199,.35);margin-top:12px}
+
+    /* BADGES / TAGS */
+    .badge-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+    .badge{display:inline-block;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700}
+    .badge-cyan{background:rgba(0,229,255,.12);color:var(--cyan);border:1px solid rgba(0,229,255,.2)}
+    .badge-lime{background:rgba(0,255,102,.12);color:var(--lime);border:1px solid rgba(0,255,102,.2)}
+    .badge-red{background:rgba(255,77,100,.12);color:#ff4d64;border:1px solid rgba(255,77,100,.2)}
+    .badge-yellow{background:rgba(255,214,0,.1);color:#ffd600;border:1px solid rgba(255,214,0,.2)}
+    .badge-purple{background:rgba(191,128,255,.1);color:#bf80ff;border:1px solid rgba(191,128,255,.2)}
+    .badge-solid{background:var(--cyan);color:#000}
+
+    /* PROGRESS BARS */
+    .progress-wrap{margin-bottom:12px}
+    .progress-label{display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px;color:rgba(199,246,199,.6)}
+    .prog-bar{height:8px;background:rgba(255,255,255,.05);border-radius:4px;overflow:hidden}
+    .prog-fill{height:100%;border-radius:4px;transition:width 1.2s ease}
+    .pf-cyan{background:linear-gradient(90deg,var(--cyan),#0099aa)}
+    .pf-lime{background:linear-gradient(90deg,var(--lime),#00aa55)}
+    .pf-purple{background:linear-gradient(90deg,#bf80ff,#7733dd)}
+    .pf-red{background:linear-gradient(90deg,#ff4d64,#cc003b)}
+
+    /* MODAL */
+    .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;z-index:500;opacity:0;pointer-events:none;transition:opacity .25s;backdrop-filter:blur(4px)}
+    .modal-overlay.open{opacity:1;pointer-events:auto}
+    .modal{background:linear-gradient(180deg,#0a140a,#050a05);border:1px solid rgba(0,229,255,.15);border-radius:12px;padding:32px;max-width:520px;width:90%;transform:scale(.93);transition:transform .25s}
+    .modal-overlay.open .modal{transform:scale(1)}
+    .modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+    .modal-title{font-size:18px;font-weight:700;color:var(--cyan)}
+    .modal-close{background:transparent;border:none;color:rgba(199,246,199,.5);font-size:22px;cursor:pointer;padding:0 4px;line-height:1;transition:color .2s}
+    .modal-close:hover{color:var(--text)}
+    .modal-body{font-size:13px;color:rgba(199,246,199,.65);line-height:1.7;margin-bottom:20px}
+    .modal-footer{display:flex;gap:10px;justify-content:flex-end}
+
+    /* ALERTS */
+    .alert{display:flex;align-items:flex-start;gap:12px;padding:12px 16px;border-radius:8px;margin-bottom:10px;font-size:13px}
+    .alert-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+    .alert-info{background:rgba(0,229,255,.06);border:1px solid rgba(0,229,255,.18);color:rgba(199,246,199,.8)}
+    .alert-success{background:rgba(0,255,102,.06);border:1px solid rgba(0,255,102,.18);color:rgba(199,246,199,.8)}
+    .alert-warn{background:rgba(255,214,0,.06);border:1px solid rgba(255,214,0,.18);color:rgba(199,246,199,.8)}
+    .alert-error{background:rgba(255,77,100,.06);border:1px solid rgba(255,77,100,.18);color:rgba(199,246,199,.8)}
+
+    /* TABS */
+    .tabs-bar{display:flex;gap:0;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:20px}
+    .tab-btn{padding:10px 18px;border:none;background:transparent;color:rgba(199,246,199,.5);cursor:pointer;font-family:inherit;font-size:13px;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .2s}
+    .tab-btn.active,.tab-btn:hover{color:var(--cyan)}
+    .tab-btn.active{border-bottom-color:var(--cyan)}
+    .tab-panel{display:none;font-size:13px;color:rgba(199,246,199,.65);line-height:1.7}
+    .tab-panel.active{display:block}
+
+    /* LOADING SPINNER */
+    .spinner{display:inline-block;width:20px;height:20px;border:2px solid rgba(0,229,255,.2);border-top-color:var(--cyan);border-radius:50%;animation:spin .7s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    /* SWITCH TOGGLE */
+    .switch-row{display:flex;align-items:center;gap:12px;margin-bottom:12px;font-size:13px}
+    .switch{position:relative;width:40px;height:22px;flex-shrink:0}
+    .switch input{opacity:0;width:0;height:0;position:absolute}
+    .switch-slider{position:absolute;inset:0;background:rgba(255,255,255,.1);border-radius:11px;cursor:pointer;transition:.3s}
+    .switch-slider::before{content:'';position:absolute;width:16px;height:16px;left:3px;top:3px;background:#888;border-radius:50%;transition:.3s}
+    .switch input:checked + .switch-slider{background:rgba(0,229,255,.3)}
+    .switch input:checked + .switch-slider::before{transform:translateX(18px);background:var(--cyan)}
+
+    footer{margin:36px 28px 24px;color:rgba(199,246,199,.25);font-size:12px;border-top:1px solid rgba(255,255,255,0.04);padding-top:16px;display:flex;justify-content:space-between}
+    footer a{color:var(--cyan);text-decoration:none}
+  </style>
+</head>
+<body>
+
+<nav class="topbar">
+  <a href="index.html" class="brand">Baitlab</a>
+  <div class="nav">
+    <a href="index.html">Home</a>
+    <a href="viewer.html">3D Viewer</a>
+    <a href="slides.html">Slides</a>
+    <a href="features.html" class="active">Features</a>
+  </div>
+</nav>
+
+<!-- MODAL OVERLAY -->
+<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title" id="modalTitle">Feature Detail</span>
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body" id="modalBody">Modal content goes here.</div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost btn-sm" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary btn-sm">Learn More</button>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <div class="page-title">Features &amp; Components</div>
+  <p class="page-sub">Baitlab's full feature set and interactive component library</p>
+
+  <!-- ── FEATURE CARDS ── -->
+  <div class="section">
+    <div class="section-label">Core Platform</div>
+    <div class="section-title">What Baitlab Offers</div>
+    <p class="section-desc">Click any card to learn more about that feature.</p>
+    <div class="feature-grid">
+      <div class="feature-card" role="button" tabindex="0" onclick="openModal('AI Voice Calling','Baitlab\'s AI voice system makes and receives phone calls using natural speech synthesis and NLP. It handles appointment booking, lead qualification, customer support, and more — operating 24/7 without human intervention.')" onkeydown="if(event.key==='Enter'||event.key===' ')this.click()">
+        <div class="card-icon">📞</div>
+        <div class="card-title">AI Voice Calling</div>
+        <div class="card-desc">Natural-sounding inbound & outbound calls managed entirely by AI. Books, qualifies, and follows up automatically.</div>
+        <span class="card-badge">Core</span>
+      </div>
+      <div class="feature-card" role="button" tabindex="0" onclick="openModal('Workflow Automation','Build powerful end-to-end workflows using Baitlab\'s visual drag-and-drop builder. Connect CRM, email, calendar, payments, and more. Trigger automations based on AI call outcomes, form submissions, or any custom event.')" onkeydown="if(event.key==='Enter'||event.key===' ')this.click()">
+        <div class="card-icon">⚙️</div>
+        <div class="card-title">Workflow Automation</div>
+        <div class="card-desc">Visual builder for connecting systems and automating complex, multi-step business processes.</div>
+        <span class="card-badge">Core</span>
+      </div>
+      <div class="feature-card" role="button" tabindex="0" onclick="openModal('Personal AI Assistant','Your personal AI handles scheduling, reminders, errand coordination, and daily task management. It learns your preferences over time and proactively suggests optimizations to your day.')" onkeydown="if(event.key==='Enter'||event.key===' ')this.click()">
+        <div class="card-icon">🧑‍💼</div>
+        <div class="card-title">Personal AI Assistant</div>
+        <div class="card-desc">Manages your schedule, reminders, and daily tasks autonomously. Gets smarter the more you use it.</div>
+        <span class="card-badge">Pro</span>
+      </div>
+      <div class="feature-card" role="button" tabindex="0" onclick="openModal('500+ Integrations','Baitlab connects natively with WhatsApp, Gmail, Outlook, Google Calendar, Stripe, HubSpot, Salesforce, Slack, Twilio, Zapier, and hundreds more. Custom integrations available via REST API and webhooks.')" onkeydown="if(event.key==='Enter'||event.key===' ')this.click()">
+        <div class="card-icon">🔗</div>
+        <div class="card-title">500+ Integrations</div>
+        <div class="card-desc">Native connections to all your favourite tools — WhatsApp, Stripe, HubSpot, Slack, Calendars, and more.</div>
+        <span class="card-badge">All Plans</span>
+      </div>
+      <div class="feature-card" role="button" tabindex="0" onclick="openModal('Real-Time Dashboard','Monitor AI call performance, workflow success rates, lead conversions, and automation efficiency from a single unified dashboard. Customizable widgets, export to CSV, and live event feeds.')" onkeydown="if(event.key==='Enter'||event.key===' ')this.click()">
+        <div class="card-icon">📊</div>
+        <div class="card-title">Real-Time Dashboard</div>
+        <div class="card-desc">Live monitoring of calls, automations, and conversions with customizable analytics widgets.</div>
+        <span class="card-badge">Pro</span>
+      </div>
+      <div class="feature-card" role="button" tabindex="0" onclick="openModal('Enterprise Security','SOC 2 Type II certified. All data encrypted in transit (TLS 1.3) and at rest (AES-256). Role-based access control, audit logs, configurable data retention, and GDPR compliance built in.')" onkeydown="if(event.key==='Enter'||event.key===' ')this.click()">
+        <div class="card-icon">🔒</div>
+        <div class="card-title">Enterprise Security</div>
+        <div class="card-desc">SOC 2, GDPR-ready, AES-256 encryption, RBAC, and full audit logging for complete compliance.</div>
+        <span class="card-badge">Enterprise</span>
+      </div>
+      <div class="feature-card" role="button" tabindex="0" onclick="openModal('AI 3D Visualization','Interactive Three.js-powered 3D dashboard for visualising AI metrics, workflow topologies, and call network graphs in real time. Explore data with orbit, zoom, and pan controls.')" onkeydown="if(event.key==='Enter'||event.key===' ')this.click()">
+        <div class="card-icon">🎮</div>
+        <div class="card-title">AI 3D Visualization</div>
+        <div class="card-desc">Real-time 3D rendering of AI metrics and workflow graphs using Three.js WebGL technology.</div>
+        <span class="card-badge">New</span>
+      </div>
+      <div class="feature-card" role="button" tabindex="0" onclick="openModal('Live Chat Widget','Embed the Baitlab voice + chat widget on any website. Visitors can start a conversation, get answers from the AI instantly, or be escalated to a human — all within the same interface.')" onkeydown="if(event.key==='Enter'||event.key===' ')this.click()">
+        <div class="card-icon">💬</div>
+        <div class="card-title">Live Chat Widget</div>
+        <div class="card-desc">Embed voice + chat AI directly on any website. Instant answers, escalation, and lead capture.</div>
+        <span class="card-badge">Core</span>
+      </div>
+      <div class="feature-card" role="button" tabindex="0" onclick="openModal('Custom AI Models','Enterprise customers can fine-tune Baitlab\'s underlying AI on proprietary data, brand voice, and domain-specific knowledge. Custom model training, evaluation, and deployment included.')" onkeydown="if(event.key==='Enter'||event.key===' ')this.click()">
+        <div class="card-icon">🤖</div>
+        <div class="card-title">Custom AI Models</div>
+        <div class="card-desc">Fine-tune AI on your brand's data, voice, and domain knowledge for maximum accuracy.</div>
+        <span class="card-badge">Enterprise</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── INFO CARDS ── -->
+  <div class="section">
+    <div class="section-label">Platform Details</div>
+    <div class="section-title">Why Teams Choose Baitlab</div>
+    <p class="section-desc">Key differentiators that set Baitlab apart from legacy solutions.</p>
+    <div class="info-row">
+      <div class="info-card-h">
+        <div class="ic-icon">⚡</div>
+        <div class="ic-body"><h4>Sub-second Response Times</h4><p>Our AI processing pipeline delivers voice and text responses in under 800ms, creating natural, human-like conversation flow without awkward pauses.</p></div>
+      </div>
+      <div class="info-card-h">
+        <div class="ic-icon">🌍</div>
+        <div class="ic-body"><h4>Multi-Language Support</h4><p>Baitlab AI operates natively in 30+ languages with automatic language detection, making it suitable for global businesses.</p></div>
+      </div>
+      <div class="info-card-h">
+        <div class="ic-icon">📈</div>
+        <div class="ic-body"><h4>Scales with You</h4><p>From 10 calls/day to 10,000 — Baitlab's infrastructure auto-scales to handle any volume with no configuration required.</p></div>
+      </div>
+      <div class="info-card-h">
+        <div class="ic-icon">🛠</div>
+        <div class="ic-body"><h4>No-Code Setup</h4><p>Get your first AI workflow running in under 10 minutes. No technical expertise needed — our visual builder handles everything.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── BUTTONS ── -->
+  <div class="section">
+    <div class="section-label">UI Components</div>
+    <div class="section-title">Button Library</div>
+    <p class="section-desc">Consistent button styles for every use case.</p>
+    <div class="btn-row">
+      <button class="btn btn-primary btn-icon">🚀 Get Started</button>
+      <button class="btn btn-outline">Learn More</button>
+      <button class="btn btn-lime btn-icon">✓ Pro Plan</button>
+      <button class="btn btn-ghost">View Docs</button>
+      <button class="btn btn-danger">Cancel Plan</button>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary btn-sm">Small</button>
+      <button class="btn btn-outline btn-sm">Small Outline</button>
+      <button class="btn btn-primary">Default</button>
+      <button class="btn btn-primary btn-lg">Large Primary</button>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary btn-icon" id="demoSpinBtn" onclick="demoSpin(this)">
+        <span id="spinTxt">Click to Load</span>
+      </button>
+      <button class="btn btn-outline" onclick="openModal('Modal Demo','This is a demonstration of the Baitlab modal component. Use modals for important messages, confirmations, or detailed information that needs user attention.')">Open Modal</button>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── TABS ── -->
+  <div class="section">
+    <div class="section-label">UI Components</div>
+    <div class="section-title">Tabbed Content</div>
+    <p class="section-desc">Organize complex information into clear, switchable tabs.</p>
+    <div class="tabs-bar">
+      <button class="tab-btn active" onclick="switchTab(this,'tab-overview')">Overview</button>
+      <button class="tab-btn" onclick="switchTab(this,'tab-api')">API</button>
+      <button class="tab-btn" onclick="switchTab(this,'tab-sdk')">SDK</button>
+      <button class="tab-btn" onclick="switchTab(this,'tab-pricing')">Pricing</button>
+    </div>
+    <div class="tab-panel active" id="tab-overview">
+      <strong style="color:var(--text)">Platform Overview</strong><br><br>
+      Baitlab is a unified AI operating layer for businesses and individuals. The platform combines voice AI, workflow automation, and intelligent integrations into a single, easy-to-use interface. No coding required for core use cases — advanced customization available via API.
+    </div>
+    <div class="tab-panel" id="tab-api">
+      <strong style="color:var(--text)">REST API</strong><br><br>
+      All Baitlab functionality is accessible via a clean REST API. Authenticate with Bearer tokens, receive webhook events for call outcomes, and trigger workflows programmatically. API rate limits: 1,000 req/min on Pro, unlimited on Enterprise.<br><br>
+      <code style="background:rgba(0,229,255,.06);padding:4px 8px;border-radius:4px;font-size:12px">POST https://api.baitlab.io/v1/calls</code>
+    </div>
+    <div class="tab-panel" id="tab-sdk">
+      <strong style="color:var(--text)">JavaScript SDK</strong><br><br>
+      Install via npm: <code style="background:rgba(0,229,255,.06);padding:4px 8px;border-radius:4px;font-size:12px">npm install @baitlab/sdk</code><br><br>
+      The SDK provides typed wrappers around all API endpoints, real-time event streaming via WebSocket, and React/Vue component bindings for the live chat widget.
+    </div>
+    <div class="tab-panel" id="tab-pricing">
+      <strong style="color:var(--text)">Pricing Summary</strong><br><br>
+      <strong>Starter:</strong> Low-cost entry plan — core AI calling, 500 calls/month, 3 integrations.<br>
+      <strong>Pro:</strong> Business tools, 5,000 calls/month, unlimited integrations, analytics dashboard.<br>
+      <strong>Enterprise:</strong> Custom AI models, unlimited calls, dedicated infrastructure, SLA, and priority support.
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── PROGRESS BARS ── -->
+  <div class="section">
+    <div class="section-label">UI Components</div>
+    <div class="section-title">Progress Indicators</div>
+    <p class="section-desc">Visualize capacity, completion, and performance metrics.</p>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>AI Call Accuracy</span><span id="pv1">94%</span></div>
+      <div class="prog-bar"><div class="prog-fill pf-cyan" id="pb1" style="width:0%"></div></div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>Workflow Success Rate</span><span id="pv2">88%</span></div>
+      <div class="prog-bar"><div class="prog-fill pf-lime" id="pb2" style="width:0%"></div></div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>Integration Coverage</span><span id="pv3">72%</span></div>
+      <div class="prog-bar"><div class="prog-fill pf-purple" id="pb3" style="width:0%"></div></div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>Platform Uptime</span><span id="pv4">99.8%</span></div>
+      <div class="prog-bar"><div class="prog-fill pf-cyan" id="pb4" style="width:0%"></div></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── BADGES ── -->
+  <div class="section">
+    <div class="section-label">UI Components</div>
+    <div class="section-title">Badges &amp; Tags</div>
+    <p class="section-desc">Status indicators and category labels.</p>
+    <div class="badge-row">
+      <span class="badge badge-cyan">New Feature</span>
+      <span class="badge badge-lime">Active</span>
+      <span class="badge badge-red">Deprecated</span>
+      <span class="badge badge-yellow">Beta</span>
+      <span class="badge badge-purple">Enterprise</span>
+      <span class="badge badge-solid">Core</span>
+    </div>
+    <div class="badge-row">
+      <span class="badge badge-cyan">AI Calling</span>
+      <span class="badge badge-lime">Workflow</span>
+      <span class="badge badge-purple">3D Viewer</span>
+      <span class="badge badge-yellow">Slides</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── ALERTS ── -->
+  <div class="section">
+    <div class="section-label">UI Components</div>
+    <div class="section-title">Alert Messages</div>
+    <p class="section-desc">Contextual feedback for user actions and system states.</p>
+    <div class="alert alert-info">
+      <span class="alert-icon">ℹ️</span>
+      <span><strong>Info:</strong> Your AI calling plan resets on the 1st of each month. Current usage: 340 / 500 calls.</span>
+    </div>
+    <div class="alert alert-success">
+      <span class="alert-icon">✅</span>
+      <span><strong>Success:</strong> Workflow "Appointment Booking" is now active and running.</span>
+    </div>
+    <div class="alert alert-warn">
+      <span class="alert-icon">⚠️</span>
+      <span><strong>Warning:</strong> You are approaching your monthly call limit. Consider upgrading to Pro.</span>
+    </div>
+    <div class="alert alert-error">
+      <span class="alert-icon">❌</span>
+      <span><strong>Error:</strong> Integration with HubSpot failed. Please reconnect your account.</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── TOGGLES ── -->
+  <div class="section">
+    <div class="section-label">UI Components</div>
+    <div class="section-title">Toggle Switches</div>
+    <p class="section-desc">Binary settings for enabling and disabling features.</p>
+    <div class="switch-row">
+      <label class="switch"><input type="checkbox" checked><span class="switch-slider"></span></label>
+      <span>AI Calling Enabled</span>
+    </div>
+    <div class="switch-row">
+      <label class="switch"><input type="checkbox" checked><span class="switch-slider"></span></label>
+      <span>Email Notifications</span>
+    </div>
+    <div class="switch-row">
+      <label class="switch"><input type="checkbox"><span class="switch-slider"></span></label>
+      <span>Call Recording (off)</span>
+    </div>
+    <div class="switch-row">
+      <label class="switch"><input type="checkbox" checked><span class="switch-slider"></span></label>
+      <span>Auto Workflow Retry</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── FORM ── -->
+  <div class="section">
+    <div class="section-label">UI Components</div>
+    <div class="section-title">Contact &amp; Signup Form</div>
+    <p class="section-desc">Get in touch or request early access to Baitlab.</p>
+    <form onsubmit="handleForm(event)" novalidate>
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label" for="f-name">Full Name</label>
+          <input id="f-name" class="form-input" type="text" placeholder="Jane Smith" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="f-email">Work Email</label>
+          <input id="f-email" class="form-input" type="email" placeholder="jane@company.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="f-company">Company</label>
+          <input id="f-company" class="form-input" type="text" placeholder="Acme Inc.">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="f-plan">Interested Plan</label>
+          <select id="f-plan" class="form-input form-select">
+            <option value="">Select a plan…</option>
+            <option>Starter</option>
+            <option>Pro</option>
+            <option>Enterprise</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label class="form-label" for="f-msg">Message</label>
+          <textarea id="f-msg" class="form-input" placeholder="Tell us about your use case…"></textarea>
+        </div>
+        <div class="form-group full">
+          <label class="form-check">
+            <input type="checkbox" required>
+            I agree to the <a href="#" style="color:var(--cyan)">Terms of Service</a> and <a href="#" style="color:var(--cyan)">Privacy Policy</a>
+          </label>
+        </div>
+      </div>
+      <button class="form-submit" type="submit">Send Message →</button>
+      <p class="form-note" id="formNote"></p>
+    </form>
+  </div>
+
+</div><!-- /content -->
+
+<footer>
+  <span>© Baitlab — Features &amp; Components</span>
+  <a href="index.html">← Back to Home</a>
+</footer>
+
+<script>
+/* ── MODAL ── */
+function openModal(title, body){
+  document.getElementById('modalTitle').textContent = title;
+  document.getElementById('modalBody').textContent  = body;
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.getElementById('modalOverlay').addEventListener('click', e=>{
+  if(e.target===document.getElementById('modalOverlay')) closeModal();
+});
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+
+/* ── TABS ── */
+function switchTab(btn, panelId){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(panelId).classList.add('active');
+}
+
+/* ── PROGRESS BARS (animate on load) ── */
+function animateProgress(){
+  const bars = [
+    {bar:'pb1', val:94}, {bar:'pb2', val:88},
+    {bar:'pb3', val:72}, {bar:'pb4', val:99.8}
+  ];
+  bars.forEach(({bar, val}, i)=>{
+    setTimeout(()=>{
+      document.getElementById(bar).style.width = val+'%';
+    }, i * 150);
+  });
+}
+const observer = new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting){ animateProgress(); observer.disconnect(); }
+},{threshold:0.3});
+observer.observe(document.getElementById('pb1'));
+
+/* ── SPIN DEMO ── */
+function demoSpin(btn){
+  const txt = document.getElementById('spinTxt');
+  btn.disabled = true;
+  txt.innerHTML = '<span class="spinner"></span> Loading…';
+  setTimeout(()=>{
+    txt.textContent = '✓ Loaded!';
+    btn.disabled = false;
+    setTimeout(()=>{ txt.textContent='Click to Load'; },2000);
+  }, 1800);
+}
+
+/* ── FORM ── */
+function handleForm(e){
+  e.preventDefault();
+  const note = document.getElementById('formNote');
+  const name  = document.getElementById('f-name').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(!name){ note.style.color='#ff4d64'; note.textContent='⚠ Please enter your full name.'; return; }
+  if(!email || !emailRe.test(email)){ note.style.color='#ff4d64'; note.textContent='⚠ Please enter a valid email address.'; return; }
+  note.style.color = 'var(--lime)';
+  note.textContent = '✓ Message sent! We\'ll be in touch within one business day.';
+  e.target.reset();
+  setTimeout(()=>{ note.textContent=''; }, 5000);
+}
+</script>
+</body>
+</html>
