@@ -32,6 +32,13 @@
     .submit{margin-top:8px;padding:8px 14px;border-radius:6px;border:none;background:var(--cyan);color:#000;cursor:pointer;font-weight:700}
     footer{margin-top:28px;color:var(--muted);font-size:13px}
     @media(max-width:880px){.grid{grid-template-columns:1fr} .headline{font-size:26px}}
+    /* Nav link styles */
+    .nav a{color:var(--text);text-decoration:none;padding:8px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.04);transition:border-color .2s,color .2s;font-size:14px}
+    .nav a:hover{border-color:var(--cyan);color:var(--cyan)}
+    /* New page links banner */
+    .hero-page-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;margin-bottom:2px}
+    .hero-page-link{display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:8px;border:1px solid rgba(0,229,255,0.18);color:var(--cyan);text-decoration:none;font-size:13px;background:rgba(0,229,255,0.04);transition:all .2s}
+    .hero-page-link:hover{background:rgba(0,229,255,0.1);border-color:var(--cyan)}
   </style>
 </head>
 <body>
@@ -39,7 +46,9 @@
     <header class="header">
       <div class="brand">Baitlab</div>
       <nav class="nav" aria-label="Main navigation">
-        <button class="btn">Features</button>
+        <a href="viewer.html">3D Viewer</a>
+        <a href="slides.html">Slides</a>
+        <a href="features.html">Features</a>
         <button class="btn">Pricing</button>
         <button class="btn">Contact</button>
       </nav>
@@ -53,6 +62,12 @@
           <button class="cta-primary">🚀 Get Started</button>
           <button class="btn">🎧 Watch</button>
           <button class="btn">📞 Try AI Call</button>
+        </div>
+
+        <div class="hero-page-links">
+          <a href="viewer.html" class="hero-page-link">🎮 AI 3D Viewer</a>
+          <a href="slides.html" class="hero-page-link">📽 Slides</a>
+          <a href="features.html" class="hero-page-link">⚡ Features &amp; Components</a>
         </div>
 
         <div class="terminal-box" aria-live="polite">
