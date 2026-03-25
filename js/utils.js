@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const path = location.pathname;
     if (
       (href === '../index.html' && (path.endsWith('/') || path.endsWith('index.html'))) ||
-      (href !== '../index.html' && path.includes(href.replace('../', '').replace('.html', '')))
+      (href !== '../index.html' && path.includes(href.replaceAll('../', '').replace('.html', '')))
     ) {
       link.classList.add('active');
     }
