@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <title>Pricing — Baitlab</title>
+  <style>
+    .pricing-hero { text-align: center; padding: 56px 0 32px; }
+    .pricing-hero h1 { font-size: clamp(24px, 4vw, 42px); margin-bottom: 12px; }
+    .pricing-hero p { color: var(--muted); font-size: 15px; }
+
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .plan-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+    }
+    .plan-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,229,255,0.07); }
+    .plan-card.featured {
+      border-color: rgba(0,229,255,0.4);
+      background: linear-gradient(160deg, rgba(0,229,255,0.06), rgba(0,255,102,0.04));
+      position: relative;
+    }
+    .plan-card.featured::before {
+      content: "Most Popular";
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, var(--cyan), var(--lime));
+      color: #000;
+      font-weight: 700;
+      font-size: 11px;
+      padding: 3px 14px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .plan-name { color: var(--cyan); font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+    .plan-price { font-size: 36px; font-weight: 700; color: var(--text); margin: 12px 0 4px; }
+    .plan-price span { font-size: 14px; color: var(--muted); font-weight: 400; }
+    .plan-desc { color: var(--muted); font-size: 13px; margin-bottom: 20px; line-height: 1.6; }
+
+    .plan-features { list-style: none; padding: 0; margin: 0 0 24px; flex: 1; }
+    .plan-features li {
+      font-size: 13px;
+      color: var(--muted);
+      padding: 5px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+    .plan-features li:last-child { border-bottom: none; }
+    .plan-features li .check { color: var(--lime); flex-shrink: 0; font-weight: 700; }
+    .plan-features li .cross { color: rgba(255,255,255,0.2); flex-shrink: 0; }
+
+    .plan-btn {
+      display: block;
+      text-align: center;
+      padding: 11px;
+      border-radius: 8px;
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .plan-btn:hover { opacity: 0.85; transform: translateY(-1px); text-decoration: none; }
+    .plan-btn.primary { background: linear-gradient(90deg, var(--cyan), var(--lime)); color: #000; }
+    .plan-btn.outline { background: transparent; border: 1px solid rgba(0,229,255,0.3); color: var(--cyan); }
+
+    /* Comparison table */
+    .comparison { margin-top: 56px; }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .comparison-table th {
+      color: var(--cyan);
+      text-align: left;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+    .comparison-table th:first-child { color: var(--muted); }
+    .comparison-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      color: var(--muted);
+    }
+    .comparison-table td:first-child { color: var(--text); }
+    .comparison-table tr:hover td { background: rgba(255,255,255,0.02); }
+    .check-cell { color: var(--lime); font-weight: 700; }
+    .cross-cell { color: rgba(255,255,255,0.2); }
+
+    /* FAQ */
+    .faq { margin-top: 56px; }
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+    .faq-question {
+      width: 100%;
+      background: var(--card-bg);
+      border: none;
+      text-align: left;
+      padding: 14px 18px;
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 13px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.2s;
+    }
+    .faq-question:hover { background: rgba(255,255,255,0.04); }
+    .faq-question .arrow { color: var(--cyan); transition: transform 0.3s; font-size: 11px; }
+    .faq-question.open .arrow { transform: rotate(90deg); }
+    .faq-answer {
+      display: none;
+      padding: 0 18px 14px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+    .faq-answer.open { display: block; }
+
+    .cta-bottom {
+      text-align: center;
+      margin-top: 56px;
+      padding: 40px;
+      background: linear-gradient(135deg, rgba(0,229,255,0.05), rgba(0,255,102,0.05));
+      border: 1px solid rgba(0,229,255,0.12);
+      border-radius: 14px;
+    }
+    .cta-bottom h3 { color: var(--cyan); font-size: 20px; margin-bottom: 10px; }
+    .cta-bottom p { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
+
+    @media (max-width: 800px) { .plans-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar" aria-label="Main navigation">
+    <a class="brand" href="../index.html">Baitlab</a>
+    <button class="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav>
+      <a class="nav-btn" href="../index.html">&#127968; Home</a>
+      <a class="nav-btn" href="console.html">&#128187; Console</a>
+      <a class="nav-btn" href="demo.html">&#9889; Live Demo</a>
+      <a class="nav-btn" href="features.html">&#128640; Features</a>
+      <a class="nav-btn active" href="pricing.html">&#128176; Pricing</a>
+      <a class="nav-btn cta ripple-btn" href="demo.html">Try Free</a>
+    </nav>
+  </nav>
+
+  <div class="page-wrap page-content">
+
+    <div class="pricing-hero anim-fade-in">
+      <h1 class="gradient-text">&#128176; Simple, Transparent Pricing</h1>
+      <p>Start free. Scale when you're ready. No hidden fees.</p>
+    </div>
+
+    <!-- Plans -->
+    <div class="plans-grid">
+
+      <div class="plan-card anim-on-scroll">
+        <div class="plan-name">&#127381; Starter</div>
+        <div class="plan-price">$0 <span>/ month</span></div>
+        <div class="plan-desc">Perfect for personal use and trying out Baitlab AI features.</div>
+        <ul class="plan-features">
+          <li><span class="check">✓</span> 10 AI calls per day</li>
+          <li><span class="check">✓</span> Basic command parsing</li>
+          <li><span class="check">✓</span> Console &amp; Demo access</li>
+          <li><span class="check">✓</span> 5 automation workflows</li>
+          <li><span class="check">✓</span> Community support</li>
+          <li><span class="cross">✗</span> Priority AI responses</li>
+          <li><span class="cross">✗</span> CRM integrations</li>
+          <li><span class="cross">✗</span> Custom AI models</li>
+        </ul>
+        <a class="plan-btn outline" href="demo.html">Get Started Free</a>
+      </div>
+
+      <div class="plan-card featured anim-on-scroll anim-delay-2">
+        <div class="plan-name">&#128640; Pro</div>
+        <div class="plan-price">$29 <span>/ month</span></div>
+        <div class="plan-desc">For businesses and power users who need full AI automation capabilities.</div>
+        <ul class="plan-features">
+          <li><span class="check">✓</span> Unlimited AI calls</li>
+          <li><span class="check">✓</span> Advanced command parsing</li>
+          <li><span class="check">✓</span> All console features</li>
+          <li><span class="check">✓</span> Unlimited workflows</li>
+          <li><span class="check">✓</span> Priority AI responses</li>
+          <li><span class="check">✓</span> CRM &amp; Calendar integrations</li>
+          <li><span class="check">✓</span> Email &amp; WhatsApp automation</li>
+          <li><span class="check">✓</span> Priority support</li>
+        </ul>
+        <a class="plan-btn primary" href="mailto:info@baitllab.com?subject=Pro Plan">Choose Pro</a>
+      </div>
+
+      <div class="plan-card anim-on-scroll anim-delay-4">
+        <div class="plan-name">&#127970; Enterprise</div>
+        <div class="plan-price">Custom <span></span></div>
+        <div class="plan-desc">Full AI infrastructure for large teams and organizations with custom requirements.</div>
+        <ul class="plan-features">
+          <li><span class="check">✓</span> Everything in Pro</li>
+          <li><span class="check">✓</span> Custom AI model fine-tuning</li>
+          <li><span class="check">✓</span> Dedicated AI infrastructure</li>
+          <li><span class="check">✓</span> SSO &amp; enterprise security</li>
+          <li><span class="check">✓</span> SLA guarantees</li>
+          <li><span class="check">✓</span> Dedicated account manager</li>
+          <li><span class="check">✓</span> Custom integrations</li>
+          <li><span class="check">✓</span> On-premise deployment</li>
+        </ul>
+        <a class="plan-btn outline" href="mailto:info@baitllab.com?subject=Enterprise Inquiry">Contact Sales</a>
+      </div>
+
+    </div>
+
+    <!-- Comparison Table -->
+    <div class="comparison anim-on-scroll">
+      <div class="section-title">Feature Comparison</div>
+      <p class="section-sub">See what's included in each plan.</p>
+      <div style="overflow-x:auto;">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Starter</th>
+              <th>Pro</th>
+              <th>Enterprise</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>AI Calls / day</td><td>10</td><td>Unlimited</td><td>Unlimited</td></tr>
+            <tr><td>Automation Workflows</td><td>5</td><td>Unlimited</td><td>Unlimited</td></tr>
+            <tr><td>Console Access</td><td class="check-cell">✓</td><td class="check-cell">✓</td><td class="check-cell">✓</td></tr>
+            <tr><td>Live Demo</td><td class="check-cell">✓</td><td class="check-cell">✓</td><td class="check-cell">✓</td></tr>
+            <tr><td>Priority AI Responses</td><td class="cross-cell">✗</td><td class="check-cell">✓</td><td class="check-cell">✓</td></tr>
+            <tr><td>CRM Integration</td><td class="cross-cell">✗</td><td class="check-cell">✓</td><td class="check-cell">✓</td></tr>
+            <tr><td>WhatsApp / Email</td><td class="cross-cell">✗</td><td class="check-cell">✓</td><td class="check-cell">✓</td></tr>
+            <tr><td>Custom AI Models</td><td class="cross-cell">✗</td><td class="cross-cell">✗</td><td class="check-cell">✓</td></tr>
+            <tr><td>Dedicated Support</td><td class="cross-cell">✗</td><td class="cross-cell">✗</td><td class="check-cell">✓</td></tr>
+            <tr><td>On-premise Deploy</td><td class="cross-cell">✗</td><td class="cross-cell">✗</td><td class="check-cell">✓</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq anim-on-scroll">
+      <div class="section-title">Frequently Asked Questions</div>
+      <p class="section-sub" style="margin-bottom:20px;">Have questions? We have answers.</p>
+
+      <div class="faq-item">
+        <button class="faq-question">Is the Starter plan really free? <span class="arrow">&#9658;</span></button>
+        <div class="faq-answer">Yes, completely free. No credit card required. You get 10 AI calls per day and access to the console and demo. Upgrade when you need more.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">What AI models does Baitlab use? <span class="arrow">&#9658;</span></button>
+        <div class="faq-answer">Baitlab integrates with HuggingFace (Mistral 7B, Llama 3, Gemma) and Groq Cloud. You can bring your own API key for free tier access, or we handle it on Pro/Enterprise plans.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Can I cancel anytime? <span class="arrow">&#9658;</span></button>
+        <div class="faq-answer">Absolutely. All paid plans are month-to-month with no lock-in. Cancel anytime from your account settings and you'll keep access until the end of the billing period.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Do I need my own API key? <span class="arrow">&#9658;</span></button>
+        <div class="faq-answer">For the free Starter plan, you can optionally add your own HuggingFace token to get real AI responses. Without one, Baitlab uses smart simulated responses. Pro and Enterprise plans include managed AI API access.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">What integrations are supported? <span class="arrow">&#9658;</span></button>
+        <div class="faq-answer">Pro and Enterprise plans support WhatsApp, Email (Gmail/Outlook), Google Calendar, Slack, and 100+ tools via webhook/API. Enterprise includes custom integration development.</div>
+      </div>
+    </div>
+
+    <!-- CTA Bottom -->
+    <div class="cta-bottom anim-on-scroll">
+      <h3>&#128640; Ready to get started?</h3>
+      <p>Try Baitlab free &mdash; no credit card, no commitment.</p>
+      <a class="btn-primary ripple-btn" href="demo.html">&#9889; Start with Live Demo</a>
+    </div>
+
+  </div>
+
+  <script src="../js/utils.js"></script>
+  <script>
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const answer = btn.nextElementSibling;
+        const isOpen = btn.classList.contains('open');
+        // Close all
+        document.querySelectorAll('.faq-question').forEach(b => {
+          b.classList.remove('open');
+          b.nextElementSibling.classList.remove('open');
+        });
+        // Toggle current
+        if (!isOpen) {
+          btn.classList.add('open');
+          answer.classList.add('open');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

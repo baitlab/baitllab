@@ -4,6 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
   <title>Baitlab — Your AI That Talks, Works, and Runs Everything</title>
   <style>
     :root{ --bg:#000; --cyan:#00e5ff; --lime:#00ff66; --muted:rgba(255,255,255,0.06); --text:#c7f6c7; }
@@ -54,15 +56,20 @@
       </nav>
     </header>
 
-    <main>
-      <section class="hero">
-        <div class="headline">Your AI That Talks, Works, and Runs Everything.</div>
-        <div class="sub">AI calls, automates, and manages your business and daily life—so you don’t have to.</div>
-        <div class="ctas">
-          <button class="cta-primary">🚀 Get Started</button>
-          <button class="btn">🎧 Watch</button>
-          <button class="btn">📞 Try AI Call</button>
-        </div>
+  <nav class="navbar" aria-label="Main navigation">
+    <a class="brand" href="index.html">Baitlab</a>
+    <button class="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav>
+      <a class="nav-btn active" href="index.html">&#127968; Home</a>
+      <a class="nav-btn" href="pages/console.html">&#128187; Console</a>
+      <a class="nav-btn" href="pages/demo.html">&#9889; Live Demo</a>
+      <a class="nav-btn" href="pages/features.html">&#128640; Features</a>
+      <a class="nav-btn" href="pages/pricing.html">&#128176; Pricing</a>
+      <a class="nav-btn cta ripple-btn" href="pages/demo.html">Try Free</a>
+    </nav>
+  </nav>
 
         <div class="hero-page-links">
           <a href="viewer.html" class="hero-page-link">🎮 AI 3D Viewer</a>
@@ -75,116 +82,151 @@
         </div>
       </section>
 
-      <section aria-label="What Baitlab Does">
-        <h2>What Baitlab Does</h2>
-        <p>From answering calls to running workflows—Baitlab replaces tasks with intelligence.</p>
-        <div class="grid">
-          <div class="card"><strong>📞 AI Calling</strong><p class="muted">Automated, natural-sounding calls that take messages, book appointments, and more.</p></div>
-          <div class="card"><strong>🧑‍💼 Business Automation</strong><p class="muted">Automate workflows, CRM updates, and follow-ups without manual steps.</p></div>
-          <div class="card"><strong>🏠 Personal Assistant</strong><p class="muted">Schedule, remind, and manage day-to-day tasks—on autopilot.</p></div>
+    <section class="hero anim-fade-in" aria-label="Hero">
+      <div class="hero-eyebrow">&#129302; AI-Powered Platform</div>
+      <h1 class="hero-title gradient-text">Your AI That Talks, Works,<br>and Runs Everything.</h1>
+      <p class="hero-sub">Baitlab AI calls, automates, and manages your business and daily life &mdash; so you don't have to.</p>
+      <div class="hero-ctas">
+        <a class="btn-primary ripple-btn" href="pages/demo.html">&#128640; Try Live Demo</a>
+        <a class="btn-outline" href="pages/features.html">&#128203; See Features</a>
+        <a class="btn-outline" href="pages/console.html">&#128187; Open Console</a>
+      </div>
+      <div class="hero-terminal terminal">
+        <div class="terminal-header">
+          <div class="terminal-dots">
+            <div class="dot red"></div>
+            <div class="dot yellow"></div>
+            <div class="dot green"></div>
+          </div>
+          <span class="terminal-title">baitlab &mdash; terminal</span>
         </div>
-      </section>
-
-      <section aria-label="AI Call Example">
-        <h2>AI Call Example</h2>
-        <div class="card">
-          <p><strong>Customer:</strong> "I want to book an appointment"
-          <br><strong>AI:</strong> "Sure, what time works for you?"</p>
-          <p><em>Try the AI call feature from the product dashboard — clickable CTA above.</em></p>
+        <div class="terminal-body">
+          <div id="hero-typeout" class="terminal-output"></div><span class="caret" aria-hidden="true"></span>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section aria-label="Business Solutions">
-        <h2>Business Solutions</h2>
-        <div class="grid">
-          <div class="card"><strong>AI Receptionist</strong><p class="muted">24/7 first-touch handling of calls and leads.</p></div>
-          <div class="card"><strong>AI Sales Agent</strong><p class="muted">Qualify leads and book meetings automatically.</p></div>
-          <div class="card"><strong>Customer Support AI</strong><p class="muted">Handle common requests and escalate where needed.</p></div>
+    <div class="glow-divider"></div>
+
+    <section class="section" aria-label="What Baitlab Does">
+      <div class="section-title">What Baitlab Does</div>
+      <p class="section-sub">From answering calls to running workflows &mdash; Baitlab replaces tasks with intelligence.</p>
+      <div class="grid-3">
+        <div class="card hover-lift anim-on-scroll">
+          <div class="feature-emoji">&#128222;</div>
+          <h3>AI Calling</h3>
+          <p>Automated, natural-sounding calls that take messages, book appointments, and handle customer requests.</p>
         </div>
-      </section>
-
-      <section aria-label="Personal Use">
-        <h2>Personal Use</h2>
-        <div class="grid">
-          <div class="card"><strong>Call & Schedule</strong><p class="muted">"Call and schedule meetings for me"—Baitlab handles it.</p></div>
-          <div class="card"><strong>Daily Reminders</strong><p class="muted">Remind me and manage my day—set it once, forget it.</p></div>
-          <div class="card"><strong>Errand Handling</strong><p class="muted">Let Baitlab take care of routine errands and confirmations.</p></div>
+        <div class="card hover-lift anim-on-scroll anim-delay-2">
+          <div class="feature-emoji">&#129489;&#8205;&#128188;</div>
+          <h3>Business Automation</h3>
+          <p>Automate workflows, CRM updates, and follow-ups without manual steps or human oversight.</p>
         </div>
-      </section>
-
-      <section aria-label="Integrations">
-        <h2>Automation & Integrations</h2>
-        <p>Baitlab connects with WhatsApp, Email, Calendars, Payments, and more to automate end-to-end workflows.</p>
-        <div class="grid">
-          <div class="card"><strong>Live Widget</strong><p class="muted">Talk to Baitlab from any page — voice + chat.</p></div>
-          <div class="card"><strong>Workflows</strong><p class="muted">Visual workflow builder to connect systems and automate tasks.</p></div>
-          <div class="card"><strong>Dashboard</strong><p class="muted">Monitor calls, conversions, and automations in real-time.</p></div>
+        <div class="card hover-lift anim-on-scroll anim-delay-4">
+          <div class="feature-emoji">&#127968;</div>
+          <h3>Personal Assistant</h3>
+          <p>Schedule, remind, and manage day-to-day tasks &mdash; your AI runs on autopilot.</p>
         </div>
-      </section>
-
-      <section aria-label="Pricing">
-        <h2>Pricing</h2>
-        <div class="grid">
-          <div class="card"><strong>Starter</strong><p class="muted">Low-cost plan to try core features.</p></div>
-          <div class="card"><strong>Pro</strong><p class="muted">Business tools and higher limits.</p></div>
-          <div class="card"><strong>Enterprise</strong><p class="muted">Custom AI and dedicated support.</p></div>
+        <div class="card hover-lift anim-on-scroll">
+          <div class="feature-emoji">&#129504;</div>
+          <h3>Smart Task Execution</h3>
+          <p>Parse complex commands and chain multiple actions to complete real-world tasks end-to-end.</p>
         </div>
-      </section>
-
-      <section aria-label="Testimonials">
-        <h2>Testimonials</h2>
-        <div class="card">"Early access users say Baitlab saved hours per week." — Beta tester</div>
-      </section>
-
-      <section aria-label="Security">
-        <h2>Security & Trust</h2>
-        <p>Privacy-first AI. Data encryption, secure integrations, and enterprise-grade controls.</p>
-      </section>
-
-      <section aria-label="Contact">
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:info@baitllab.com">info@baitllab.com</a></p>
-        <div class="contact-form">
-          <form action="mailto:info@baitllab.com" method="GET" enctype="text/plain">
-            <label for="name">Your Name</label>
-            <input id="name" name="name" required>
-            <label for="email">Your Email</label>
-            <input id="email" name="email" type="email" required>
-            <label for="message">Your Message</label>
-            <textarea id="message" name="message" rows="4" required></textarea>
-            <button class="submit" type="submit">Contact Us</button>
-          </form>
+        <div class="card hover-lift anim-on-scroll anim-delay-2">
+          <div class="feature-emoji">&#127908;</div>
+          <h3>Voice Commands</h3>
+          <p>Speak or type natural language commands &mdash; Baitlab understands context and executes with precision.</p>
         </div>
-      </section>
+        <div class="card hover-lift anim-on-scroll anim-delay-4">
+          <div class="feature-emoji">&#9889;</div>
+          <h3>Real-time Response</h3>
+          <p>Instant AI responses with streaming text output. No wait times, no bottlenecks.</p>
+        </div>
+      </div>
+    </section>
 
-    </main>
+    <section class="section" aria-label="AI Call Example">
+      <div class="section-title">AI in Action</div>
+      <p class="section-sub">See how Baitlab handles real conversations.</p>
+      <div class="terminal">
+        <div class="terminal-header">
+          <div class="terminal-dots">
+            <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+          </div>
+          <span class="terminal-title">baitlab &mdash; ai call transcript</span>
+        </div>
+        <div class="terminal-body" style="min-height:auto">
+          <div class="terminal-line prompt">$ call barber and book 3pm appointment</div>
+          <div class="terminal-line response">&#128222; Calling Barber Shop at +1-555-0190...</div>
+          <div class="terminal-line response">&#129302; AI: "Hello, I'd like to book an appointment for 3 PM today."</div>
+          <div class="terminal-line response">&#128203; Barber: "Sure! I have 3 PM available. Name?"</div>
+          <div class="terminal-line response">&#129302; AI: "John, please. Confirmation by text would be great."</div>
+          <div class="terminal-line response">&#9989; Appointment booked &mdash; 3:00 PM. Confirmation sent to your phone.</div>
+        </div>
+      </div>
+    </section>
 
-    <footer>
-      © Baitlab — AI That Works for You.
-    </footer>
+    <section class="section" aria-label="Quick Start">
+      <div class="section-title">Quick Start</div>
+      <div class="quick-start anim-on-scroll">
+        <ol>
+          <li><strong>Open the Console</strong> &mdash; Navigate to the Console page from the menu above.</li>
+          <li><strong>Type a command</strong> &mdash; Try <code style="color:var(--lime)">call my barber</code> or <code style="color:var(--lime)">schedule meeting tomorrow 2pm</code>.</li>
+          <li><strong>Watch Baitlab work</strong> &mdash; AI parses your command and responds in real time.</li>
+          <li><strong>Enable real AI</strong> &mdash; Type <code style="color:var(--lime)">set-token YOUR_HF_TOKEN</code> for full HuggingFace AI responses.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="cta-strip anim-on-scroll">
+      <a class="btn-primary ripple-btn" href="pages/demo.html" style="font-size:16px; padding:14px 32px;">
+        &#9889; Try the Live Demo Now
+      </a>
+      <p>No account required &middot; Free AI responses &middot; No credit card</p>
+    </section>
+
+    <section class="section contact-section" aria-label="Contact">
+      <div class="section-title">Contact</div>
+      <p class="section-sub">Email: <a href="mailto:info@baitllab.com">info@baitllab.com</a></p>
+      <div class="card" style="max-width:520px">
+        <form action="mailto:info@baitllab.com" method="GET" enctype="text/plain">
+          <label for="name">Your Name</label>
+          <input id="name" name="name" placeholder="Jane Smith" required>
+          <label for="email">Your Email</label>
+          <input id="email" name="email" type="email" placeholder="jane@example.com" required>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="4" placeholder="Tell us what you need..." required></textarea>
+          <button class="submit-btn" type="submit">Send Message</button>
+        </form>
+      </div>
+    </section>
+
   </div>
 
-<script>
-// Simple typewriter intro in the terminal box (no word "demo" anywhere)
-const lines = [
-  'root@baitlab:~$ echo "Welcome to Baitlab"',
-  'Welcome to Baitlab — AI that talks, works, and runs things for you.',
-  'Type "Get Started" to begin.'
-];
-const out = document.getElementById('typeout');
-let li = 0, ci = 0;
-const speed = 28;
-function step(){
-  if (li >= lines.length) return;
-  const line = lines[li];
-  if (ci < line.length){
-    out.textContent += line[ci++];
-    setTimeout(step, speed);
-  } else {
-    out.textContent += '\n'; ci = 0; li++; setTimeout(step, 700);
-  }
-}
-step();
-</script>
+  <footer>
+    <div class="page-wrap">
+      &copy; 2024 Baitlab &mdash; AI That Works for You. &nbsp;&middot;&nbsp;
+      <a href="pages/features.html">Features</a> &nbsp;&middot;&nbsp;
+      <a href="pages/pricing.html">Pricing</a> &nbsp;&middot;&nbsp;
+      <a href="pages/console.html">Console</a>
+    </div>
+  </footer>
+
+  <script src="js/utils.js"></script>
+  <script>
+    const lines = [
+      'root@baitlab:~$ baitlab init',
+      '> Loading AI modules... done',
+      '> Connecting to services... done',
+      '> Ready.',
+      '',
+      'root@baitlab:~$ call barber "book 3pm"',
+      '> Calling... Appointment booked!',
+      '',
+      'root@baitlab:~$ _'
+    ];
+    const out = document.getElementById('hero-typeout');
+    BaitlabUtils.typewriter(out, lines, 22, 400);
+  </script>
 </body>
 </html>
