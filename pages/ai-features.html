@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <title>AI Features — Baitlab</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <header class="header">
+    <a href="../index.html" class="brand">Baitlab</a>
+    <nav class="nav">
+      <a href="../index.html" class="btn">← Home</a>
+      <a href="3d-showcase.html" class="btn">3D Showcase</a>
+      <a href="slides.html" class="btn">Slides</a>
+      <a href="demo.html" class="btn btn-primary">Try Demo</a>
+    </nav>
+  </header>
+
+  <main>
+    <a href="../index.html" class="back-link">← Back to Home</a>
+
+    <div class="hero">
+      <div class="headline">AI <span>Features</span> Deep Dive</div>
+      <p class="sub-headline">Explore every AI capability — from character-by-character typing simulation to real-time streaming text and intelligent automation.</p>
+    </div>
+
+    <!-- Typing effect demo -->
+    <section aria-label="AI Typing Effect" class="js-reveal">
+      <h2 class="section-title">AI Typing Effect</h2>
+      <p class="section-desc">Character-by-character text streaming with configurable speed, blinking cursor, and pause/resume controls.</p>
+
+      <div class="terminal-box">
+        <div class="terminal-titlebar">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot yellow"></span>
+          <span class="terminal-dot green"></span>
+          <span class="terminal-title">AI Response Stream</span>
+        </div>
+        <div class="terminal-body">
+          <div id="typing-demo" class="output"></div>
+        </div>
+      </div>
+
+      <div class="ctas" style="margin-top:12px">
+        <button class="btn btn-primary btn-ripple" id="btn-type-fast">⚡ Fast</button>
+        <button class="btn btn-ripple" id="btn-type-medium">🔵 Medium</button>
+        <button class="btn btn-ripple" id="btn-type-slow">🐢 Slow</button>
+        <button class="btn btn-ripple" id="btn-type-pause">⏸ Pause</button>
+        <button class="btn btn-ripple" id="btn-type-reset">↺ Reset</button>
+      </div>
+    </section>
+
+    <!-- Streaming text demo -->
+    <section aria-label="Streaming Text" class="js-reveal">
+      <h2 class="section-title">Line-by-Line Streaming</h2>
+      <p class="section-desc">Real-time data streaming with progress tracking, event callbacks, and stream cancellation.</p>
+
+      <div class="stream-box" id="stream-demo" aria-live="polite"></div>
+
+      <div class="ctas" style="margin-top:12px">
+        <button class="btn btn-primary btn-ripple" id="btn-stream-start">▶ Start Stream</button>
+        <button class="btn btn-ripple" id="btn-stream-pause">⏸ Pause</button>
+        <button class="btn btn-ripple" id="btn-stream-reset">↺ Reset</button>
+      </div>
+
+      <div class="progress-wrap" style="margin-top:12px">
+        <div class="progress-bar" id="stream-progress" style="width:0%"></div>
+      </div>
+    </section>
+
+    <!-- AI Response Generator -->
+    <section aria-label="AI Response Generator" class="js-reveal">
+      <h2 class="section-title">AI Response Generator</h2>
+      <p class="section-desc">Enter a prompt and watch the AI compose a response with realistic typing simulation.</p>
+
+      <div class="contact-form" style="max-width:100%;margin-bottom:14px">
+        <label for="ai-prompt">Your prompt</label>
+        <input id="ai-prompt" placeholder="e.g. Explain quantum computing in simple terms…" />
+        <button class="btn btn-primary btn-ripple" id="btn-ai-respond" style="margin-top:4px">🤖 Generate AI Response</button>
+      </div>
+
+      <div class="terminal-box">
+        <div class="terminal-titlebar">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot yellow"></span>
+          <span class="terminal-dot green"></span>
+          <span class="terminal-title">AI Output</span>
+        </div>
+        <div class="terminal-body">
+          <div id="ai-output" class="output" style="color:var(--lime)"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Progress bars -->
+    <section aria-label="AI Skill Bars" class="js-reveal">
+      <h2 class="section-title">AI Capability Metrics</h2>
+      <p class="section-desc">Real-time performance indicators across AI task domains.</p>
+
+      <div style="max-width:560px">
+        <div class="progress-label"><span>Natural Language Processing</span><span>96%</span></div>
+        <div class="progress-wrap"><div class="progress-bar" data-value="96"></div></div>
+
+        <div class="progress-label"><span>Voice Recognition</span><span>92%</span></div>
+        <div class="progress-wrap"><div class="progress-bar" data-value="92"></div></div>
+
+        <div class="progress-label"><span>Workflow Automation</span><span>89%</span></div>
+        <div class="progress-wrap"><div class="progress-bar" data-value="89"></div></div>
+
+        <div class="progress-label"><span>3D Scene Generation</span><span>84%</span></div>
+        <div class="progress-wrap"><div class="progress-bar" data-value="84"></div></div>
+
+        <div class="progress-label"><span>Predictive Analytics</span><span>91%</span></div>
+        <div class="progress-wrap"><div class="progress-bar" data-value="91"></div></div>
+      </div>
+    </section>
+
+    <!-- Feature rows -->
+    <section aria-label="Feature Details" class="js-reveal stagger-parent">
+      <h2 class="section-title">AI Feature Details</h2>
+
+      <div class="feature-row stagger-child">
+        <div class="feature-icon">⌨️</div>
+        <div class="feature-content">
+          <h3>Typing Simulation</h3>
+          <p>Character-by-character stream at 18ms, 45ms, or 100ms per character with ±40% jitter for organic feel. Supports pause, resume, and reset.</p>
+        </div>
+      </div>
+
+      <div class="feature-row stagger-child">
+        <div class="feature-icon">📡</div>
+        <div class="feature-content">
+          <h3>Line Streaming</h3>
+          <p>Stream arrays of text line-by-line with configurable delay, auto-scroll, progress tracking, and cancellation support.</p>
+        </div>
+      </div>
+
+      <div class="feature-row stagger-child">
+        <div class="feature-icon">🎨</div>
+        <div class="feature-content">
+          <h3>AI Colour Schemes</h3>
+          <p>Generate and apply AI-curated colour palettes dynamically with smooth CSS variable transitions.</p>
+        </div>
+      </div>
+
+      <div class="feature-row stagger-child">
+        <div class="feature-icon">🧭</div>
+        <div class="feature-content">
+          <h3>Predictive Navigation</h3>
+          <p>AI-powered next-page recommendations based on current page context and browsing patterns.</p>
+        </div>
+      </div>
+
+      <div class="feature-row stagger-child">
+        <div class="feature-icon">🔊</div>
+        <div class="feature-content">
+          <h3>AI Voice Calling</h3>
+          <p>Natural-sounding AI voice agents that handle inbound and outbound calls autonomously.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tabs demo -->
+    <section aria-label="AI Models" class="js-reveal" data-tabs-scope>
+      <h2 class="section-title">AI Model Library</h2>
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="tab-nlp">NLP</button>
+        <button class="tab-btn" data-tab="tab-voice">Voice</button>
+        <button class="tab-btn" data-tab="tab-vision">Vision</button>
+        <button class="tab-btn" data-tab="tab-code">Code</button>
+      </div>
+
+      <div class="tab-content active" id="tab-nlp">
+        <div class="card">
+          <strong>Natural Language Processing</strong>
+          <p>Context-aware text understanding, sentiment analysis, entity extraction, and summarisation. Handles multi-turn conversations with persistent context windows.</p>
+        </div>
+      </div>
+      <div class="tab-content" id="tab-voice">
+        <div class="card">
+          <strong>Voice AI Engine</strong>
+          <p>Real-time speech-to-text, neural TTS with 24 voice options, emotion detection, and background noise suppression. Sub-200ms end-to-end latency.</p>
+        </div>
+      </div>
+      <div class="tab-content" id="tab-vision">
+        <div class="card">
+          <strong>Computer Vision</strong>
+          <p>Object detection, OCR, face anonymisation, and document parsing. Integrates with camera feeds and static images via a unified API.</p>
+        </div>
+      </div>
+      <div class="tab-content" id="tab-code">
+        <div class="card">
+          <strong>Code Generation</strong>
+          <p>Multi-language code completion, refactoring suggestions, unit test generation, and documentation writing. Supports Python, JS, Go, Rust, and 30+ others.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Collapsibles -->
+    <section aria-label="FAQ" class="js-reveal">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+
+      <button class="collapsible-btn" data-target="faq-1" aria-expanded="false">
+        How fast is the AI typing effect? <span class="arrow">▼</span>
+      </button>
+      <div class="collapsible-content" id="faq-1">
+        The typing effect supports three presets: <strong>Fast</strong> (18ms/char), <strong>Medium</strong> (45ms/char), and <strong>Slow</strong> (100ms/char). Each adds ±40% random jitter to simulate natural typing rhythm.
+      </div>
+
+      <button class="collapsible-btn" data-target="faq-2" aria-expanded="false">
+        Can I stream data in real time? <span class="arrow">▼</span>
+      </button>
+      <div class="collapsible-content" id="faq-2">
+        Yes. The <code>StreamingText</code> class accepts an array of line objects and streams them at a configurable delay. You can pause, resume, append new lines, and receive callbacks on each line and on completion.
+      </div>
+
+      <button class="collapsible-btn" data-target="faq-3" aria-expanded="false">
+        Does the 3D viewer work on mobile? <span class="arrow">▼</span>
+      </button>
+      <div class="collapsible-content" id="faq-3">
+        Absolutely. The viewer uses a custom touch-based orbit controller and a ResizeObserver to adapt the canvas size dynamically. Pixel ratio is clamped at 2× for performance.
+      </div>
+
+      <button class="collapsible-btn" data-target="faq-4" aria-expanded="false">
+        What browsers are supported? <span class="arrow">▼</span>
+      </button>
+      <div class="collapsible-content" id="faq-4">
+        All modern browsers supporting ES Modules and WebGL: Chrome 80+, Firefox 80+, Safari 14+, Edge 80+. Three.js requires WebGL 1.0 minimum; the typing and streaming features work in any ES6+ environment.
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© Baitlab — AI That Works for You.</span>
+    <span>
+      <a href="../index.html">Home</a> ·
+      <a href="3d-showcase.html">3D Showcase</a> ·
+      <a href="demo.html">Demo</a>
+    </span>
+  </footer>
+</div>
+
+<script type="module">
+  import { TypingEffect } from '../js/typing-effect.js';
+  import { StreamingText } from '../js/streaming-text.js';
+  import { aiRespond } from '../js/ai-features.js';
+  import { initComponents } from '../js/components.js';
+  import { initAnimations  } from '../js/animations.js';
+  import { initRevealOnScroll } from '../js/utils.js';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initComponents();
+    initAnimations();
+    initRevealOnScroll();
+
+    /* ── Typing demo ─────────────────────────────────────── */
+    const demoLines = [
+      'Initialising Baitlab AI core…',
+      'Loading language model weights…',
+      'Calibrating inference pipeline…',
+      'AI engine ready. Awaiting input.',
+    ];
+
+    let typingEffect = new TypingEffect('#typing-demo', { speed: 'medium' });
+    typingEffect.typeLines(demoLines);
+
+    document.getElementById('btn-type-fast').addEventListener('click', () => {
+      typingEffect.reset();
+      typingEffect.setSpeed('fast');
+      typingEffect.typeLines(demoLines);
+    });
+    document.getElementById('btn-type-medium').addEventListener('click', () => {
+      typingEffect.reset();
+      typingEffect.setSpeed('medium');
+      typingEffect.typeLines(demoLines);
+    });
+    document.getElementById('btn-type-slow').addEventListener('click', () => {
+      typingEffect.reset();
+      typingEffect.setSpeed('slow');
+      typingEffect.typeLines(demoLines);
+    });
+    document.getElementById('btn-type-pause').addEventListener('click', () => {
+      typingEffect.isRunning ? typingEffect.pause() : typingEffect.resume();
+    });
+    document.getElementById('btn-type-reset').addEventListener('click', () => {
+      typingEffect.reset();
+    });
+
+    /* ── Stream demo ─────────────────────────────────────── */
+    const streamLines = [
+      { text: '$ baitlab stream --source=ai', type: 'cmd' },
+      { text: '[INIT]   Connecting to AI pipeline…', type: 'info' },
+      { text: '[AUTH]   Token validated ✓', type: 'success' },
+      { text: '[RECV]   Stream chunk #1: NLP module online', type: 'info' },
+      { text: '[RECV]   Stream chunk #2: Voice engine ready', type: 'info' },
+      { text: '[RECV]   Stream chunk #3: 3D renderer active', type: 'success' },
+      { text: '[RECV]   Stream chunk #4: Analytics pipeline warm', type: 'info' },
+      { text: '[RECV]   Stream chunk #5: All systems nominal', type: 'success' },
+      { text: '[PERF]   Throughput: 1.4 MB/s  Latency: 11ms', type: 'dim' },
+      { text: '[DONE]   Stream complete — 0 errors', type: 'success' },
+    ];
+
+    const progressBar = document.getElementById('stream-progress');
+    let stream = new StreamingText('#stream-demo', streamLines, {
+      delay: 380,
+      autoScroll: true,
+      onLine: (_, i) => {
+        progressBar.style.width = `${Math.round(((i + 1) / streamLines.length) * 100)}%`;
+      },
+    });
+
+    document.getElementById('btn-stream-start').addEventListener('click', () => stream.start());
+    document.getElementById('btn-stream-pause').addEventListener('click', () => {
+      stream.isRunning ? stream.pause() : stream.resume();
+    });
+    document.getElementById('btn-stream-reset').addEventListener('click', () => {
+      stream.reset();
+      progressBar.style.width = '0%';
+      stream = new StreamingText('#stream-demo', streamLines, {
+        delay: 380,
+        autoScroll: true,
+        onLine: (_, i) => {
+          progressBar.style.width = `${Math.round(((i + 1) / streamLines.length) * 100)}%`;
+        },
+      });
+    });
+
+    /* ── AI Response ─────────────────────────────────────── */
+    document.getElementById('btn-ai-respond').addEventListener('click', () => {
+      const prompt = document.getElementById('ai-prompt').value.trim();
+      if (!prompt) return;
+      const output = document.getElementById('ai-output');
+      output.textContent = '';
+      aiRespond(output, prompt, { speed: 'fast' });
+    });
+  });
+</script>
+</body>
+</html>
