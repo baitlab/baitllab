@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <title>Demo — Baitlab</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <header class="header">
+    <a href="../index.html" class="brand">Baitlab</a>
+    <nav class="nav">
+      <a href="../index.html" class="btn">← Home</a>
+      <a href="ai-features.html" class="btn">AI Features</a>
+      <a href="3d-showcase.html" class="btn">3D Showcase</a>
+    </nav>
+  </header>
+
+  <main>
+    <a href="../index.html" class="back-link">← Back to Home</a>
+
+    <div class="hero">
+      <div class="headline">Try <span>Baitlab</span> Live</div>
+      <p class="sub-headline">Experience the full Baitlab AI platform in a sandbox environment. No signup required.</p>
+    </div>
+
+    <!-- Interactive AI terminal -->
+    <section aria-label="AI Terminal Demo" class="js-reveal">
+      <h2 class="section-title">AI Terminal</h2>
+      <p class="section-desc">Type a command and watch the AI respond in real time.</p>
+
+      <div class="terminal-box scanline-overlay">
+        <div class="terminal-titlebar">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot yellow"></span>
+          <span class="terminal-dot green"></span>
+          <span class="terminal-title">baitlab-demo — bash</span>
+          <span style="margin-left:auto;font-size:11px;color:rgba(200,246,200,0.3)">LIVE</span>
+        </div>
+        <div class="terminal-body" id="demo-terminal" aria-live="polite" style="max-height:320px;overflow-y:auto"></div>
+        <div style="display:flex;align-items:center;padding:0 20px 14px;gap:8px">
+          <span style="color:var(--cyan);font-size:14px;flex-shrink:0">root@baitlab:~$</span>
+          <input id="terminal-input" placeholder="e.g. help | status | analyse --topic=ai" style="flex:1;margin-bottom:0;font-size:14px" autocomplete="off" spellcheck="false" aria-label="Terminal command input">
+          <button class="btn btn-primary" id="btn-run" style="flex-shrink:0;white-space:nowrap">Run ↵</button>
+        </div>
+      </div>
+
+      <div class="ctas" style="margin-top:10px">
+        <button class="btn btn-ripple" onclick="runCmd('help')">help</button>
+        <button class="btn btn-ripple" onclick="runCmd('status')">status</button>
+        <button class="btn btn-ripple" onclick="runCmd('ai hello world')">ai hello world</button>
+        <button class="btn btn-ripple" onclick="runCmd('stream demo')">stream demo</button>
+        <button class="btn btn-ripple" onclick="runCmd('clear')">clear</button>
+      </div>
+    </section>
+
+    <!-- Quick demo cards -->
+    <section aria-label="Demo Features" class="js-reveal stagger-parent">
+      <h2 class="section-title">Demo Modules</h2>
+      <div class="grid">
+
+        <div class="card stagger-child">
+          <strong>⌨️ Typing Simulator</strong>
+          <p>Watch AI compose responses character by character. Adjustable speed.</p>
+          <div style="margin-top:12px">
+            <button class="btn btn-primary btn-ripple" style="width:100%" id="demo-typing-btn">Launch Typing Demo</button>
+          </div>
+          <div id="demo-typing-output" style="margin-top:10px;min-height:2em;font-size:13px;color:var(--lime)"></div>
+        </div>
+
+        <div class="card stagger-child">
+          <strong>📡 Stream Simulator</strong>
+          <p>Real-time line-by-line data stream with progress tracking.</p>
+          <div style="margin-top:12px">
+            <button class="btn btn-primary btn-ripple" style="width:100%" id="demo-stream-btn">Start Stream</button>
+          </div>
+          <div class="stream-box" id="demo-stream-box" style="margin-top:10px;min-height:80px;max-height:120px"></div>
+        </div>
+
+        <div class="card stagger-child">
+          <strong>🎨 AI Colour Generator</strong>
+          <p>Let AI generate and apply a colour palette to the current page.</p>
+          <div style="margin-top:12px">
+            <button class="btn btn-primary btn-ripple" style="width:100%" id="demo-color-btn">Generate Palette</button>
+          </div>
+          <div id="demo-color-output" style="margin-top:10px;font-size:12px;color:var(--text-muted)">Click to generate…</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Contact / sign-up -->
+    <section aria-label="Contact" class="js-reveal">
+      <h2 class="section-title">Get Full Access</h2>
+      <p class="section-desc">Request access to the full Baitlab platform — AI calling, workflows, and 3D integration.</p>
+
+      <div class="contact-form">
+        <form id="demo-form" novalidate>
+          <label for="df-name">Your Name</label>
+          <input id="df-name" name="name" placeholder="Jane Smith" required>
+
+          <label for="df-email">Work Email</label>
+          <input id="df-email" name="email" type="email" placeholder="jane@company.com" required>
+
+          <label for="df-use-case">Primary Use Case</label>
+          <select id="df-use-case" name="use_case" style="margin-bottom:12px">
+            <option value="">Select…</option>
+            <option value="voice">AI Voice Calling</option>
+            <option value="automation">Workflow Automation</option>
+            <option value="3d">3D AI Visualisation</option>
+            <option value="personal">Personal Assistant</option>
+          </select>
+
+          <label for="df-message">Tell us about your needs</label>
+          <textarea id="df-message" name="message" rows="3" placeholder="Describe your use case…"></textarea>
+
+          <button class="btn btn-primary btn-ripple" type="submit" style="width:100%;justify-content:center">🚀 Request Access</button>
+        </form>
+        <div id="form-success" class="hidden" style="color:var(--lime);font-size:14px;margin-top:10px">
+          ✓ Request submitted! We'll be in touch within 24 hours.
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal example -->
+    <section aria-label="Modal Demo" class="js-reveal">
+      <h2 class="section-title">Modal & Notification Demo</h2>
+      <div class="ctas">
+        <button class="btn btn-primary btn-ripple" data-modal-open="demo-modal">Open Modal</button>
+        <button class="btn btn-ripple" id="btn-toast-success">Toast: Success</button>
+        <button class="btn btn-ripple" id="btn-toast-error">Toast: Error</button>
+        <button class="btn btn-ripple" id="btn-toast-info">Toast: Info</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© Baitlab — AI That Works for You.</span>
+    <span>
+      <a href="../index.html">Home</a> ·
+      <a href="ai-features.html">AI Features</a> ·
+      <a href="portfolio.html">Portfolio</a>
+    </span>
+  </footer>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="demo-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
+  <div class="modal">
+    <button class="modal-close" data-modal-close aria-label="Close modal">✕</button>
+    <div class="modal-title" id="modal-title">🤖 Baitlab AI Modal</div>
+    <p style="font-size:14px;color:var(--text-muted);line-height:1.7">
+      This is a demo modal window. Baitlab uses modals for confirmation dialogs, detail views, and onboarding flows.
+      Close by pressing <kbd style="background:rgba(255,255,255,0.08);padding:2px 6px;border-radius:4px">Esc</kbd>,
+      clicking the ✕ button, or clicking outside.
+    </p>
+    <div style="margin-top:16px;display:flex;gap:10px">
+      <button class="btn btn-primary" data-modal-close>Confirm</button>
+      <button class="btn" data-modal-close>Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast container -->
+<div id="toast-container"></div>
+
+<script type="module">
+  import { TypingEffect } from '../js/typing-effect.js';
+  import { StreamingText } from '../js/streaming-text.js';
+  import { generateColorScheme } from '../js/ai-features.js';
+  import { initComponents, openModal, toast } from '../js/components.js';
+  import { initAnimations  } from '../js/animations.js';
+  import { initRevealOnScroll } from '../js/utils.js';
+
+  /* ── Terminal logic ──────────────────────────────────────── */
+  const terminalEl = document.getElementById('demo-terminal');
+  const inputEl    = document.getElementById('terminal-input');
+
+  const COMMANDS = {
+    help: () => [
+      { text: 'Available commands:', type: 'info' },
+      { text: '  status          — Show system status', type: 'dim' },
+      { text: '  ai <text>       — Generate AI response', type: 'dim' },
+      { text: '  stream demo     — Start stream demo', type: 'dim' },
+      { text: '  clear           — Clear terminal', type: 'dim' },
+    ],
+    status: () => [
+      { text: '[✓] AI engine     online',   type: 'success' },
+      { text: '[✓] Voice service online',   type: 'success' },
+      { text: '[✓] 3D renderer   ready',    type: 'success' },
+      { text: '[✓] Stream pipe   active',   type: 'success' },
+      { text: '[✓] API latency   14ms',     type: 'success' },
+    ],
+    clear: null, // handled specially
+  };
+
+  function appendTerminalLines(lines) {
+    lines.forEach(({ text, type = 'info' }) => {
+      const div = document.createElement('div');
+      div.className = `stream-line ${type}`;
+      div.textContent = text;
+      terminalEl.appendChild(div);
+    });
+    terminalEl.scrollTop = terminalEl.scrollHeight;
+  }
+
+  window.runCmd = (cmd) => {
+    const trimmed = cmd.trim();
+    if (!trimmed) return;
+
+    appendTerminalLines([{ text: `$ ${trimmed}`, type: 'cmd' }]);
+
+    if (trimmed === 'clear') {
+      terminalEl.innerHTML = '';
+      return;
+    }
+
+    if (COMMANDS[trimmed]) {
+      appendTerminalLines(COMMANDS[trimmed]());
+      return;
+    }
+
+    if (trimmed.startsWith('ai ') || trimmed.startsWith('analyse')) {
+      const fakeLines = [
+        { text: '[AI]  Processing…', type: 'info' },
+        { text: `[AI]  "${trimmed.replace(/^ai /, '')}" — understood.`, type: 'info' },
+        { text: '[AI]  Generating response with 128M parameter model…', type: 'info' },
+        { text: '[AI]  Response: Baitlab AI is processing your request. For a real AI response, connect your API key in the dashboard.', type: 'success' },
+      ];
+      let i = 0;
+      const iv = setInterval(() => {
+        if (i >= fakeLines.length) { clearInterval(iv); return; }
+        appendTerminalLines([fakeLines[i++]]);
+      }, 400);
+      return;
+    }
+
+    if (trimmed === 'stream demo') {
+      const demoLines = [
+        { text: '[STREAM] Connecting to data feed…', type: 'info' },
+        { text: '[STREAM] Chunk 1: NLP online', type: 'success' },
+        { text: '[STREAM] Chunk 2: Voice engine ready', type: 'success' },
+        { text: '[STREAM] Chunk 3: All modules nominal', type: 'success' },
+        { text: '[STREAM] Complete.', type: 'dim' },
+      ];
+      let i = 0;
+      const iv = setInterval(() => {
+        if (i >= demoLines.length) { clearInterval(iv); return; }
+        appendTerminalLines([demoLines[i++]]);
+      }, 380);
+      return;
+    }
+
+    appendTerminalLines([{ text: `Command not found: ${trimmed}. Type "help" for options.`, type: 'error' }]);
+  };
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initComponents();
+    initAnimations();
+    initRevealOnScroll();
+
+    // Boot sequence
+    appendTerminalLines([
+      { text: 'Baitlab Demo Terminal v2.0', type: 'success' },
+      { text: 'Type "help" for available commands.', type: 'dim' },
+    ]);
+
+    // Run button
+    document.getElementById('btn-run').addEventListener('click', () => {
+      const val = inputEl.value;
+      inputEl.value = '';
+      runCmd(val);
+    });
+    inputEl.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const val = inputEl.value;
+        inputEl.value = '';
+        runCmd(val);
+      }
+    });
+
+    /* ── Typing demo ──────────────────────────────────────── */
+    document.getElementById('demo-typing-btn').addEventListener('click', () => {
+      const el = document.getElementById('demo-typing-output');
+      el.textContent = '';
+      new TypingEffect(el, { speed: 'fast' }).typeLines([
+        'Analysing your business requirements…',
+        'Optimising workflow parameters…',
+        'AI model ready — confidence 97%',
+      ], 400);
+    });
+
+    /* ── Stream demo ──────────────────────────────────────── */
+    let demoStream;
+    const mkStream = () => new StreamingText('#demo-stream-box', [
+      { text: '▶ Initialising stream…', type: 'cmd' },
+      { text: 'Module 1: online',       type: 'success' },
+      { text: 'Module 2: online',       type: 'success' },
+      { text: 'Module 3: online',       type: 'success' },
+      { text: 'All modules ready ✓',   type: 'success' },
+    ], { delay: 350 });
+
+    document.getElementById('demo-stream-btn').addEventListener('click', () => {
+      if (demoStream) { demoStream.reset(); }
+      demoStream = mkStream();
+      demoStream.start();
+    });
+
+    /* ── Colour generator ────────────────────────────────── */
+    document.getElementById('demo-color-btn').addEventListener('click', () => {
+      const palette = generateColorScheme(true);
+      document.getElementById('demo-color-output').textContent =
+        `Applied: ${palette.name} — bg: ${palette.bg} · accent: ${palette.accent}`;
+    });
+
+    /* ── Toast buttons ───────────────────────────────────── */
+    document.getElementById('btn-toast-success').addEventListener('click', () =>
+      toast('Action completed successfully!', 'success'));
+    document.getElementById('btn-toast-error').addEventListener('click',   () =>
+      toast('Something went wrong. Please try again.', 'error'));
+    document.getElementById('btn-toast-info').addEventListener('click',    () =>
+      toast('Baitlab AI is processing your request…', 'info'));
+
+    /* ── Form ────────────────────────────────────────────── */
+    document.getElementById('demo-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      document.getElementById('demo-form').classList.add('hidden');
+      document.getElementById('form-success').classList.remove('hidden');
+      toast('Request submitted! Check your inbox.', 'success');
+    });
+  });
+</script>
+</body>
+</html>

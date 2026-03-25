@@ -1,0 +1,99 @@
+/* ============================================================
+   Baitlab — Responsive Design
+   ============================================================ */
+
+/* ── Breakpoints:
+   sm:  480px
+   md:  768px
+   lg:  1024px
+   xl:  1200px
+   ──────────────────────────────────────────────────────────── */
+
+@media (max-width: 1200px) {
+  .page { padding: 20px 16px 40px; }
+}
+
+@media (max-width: 1024px) {
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 10px 0 14px;
+    flex-wrap: wrap;
+    gap: 10px;
+    position: static;
+  }
+
+  .nav { gap: 6px; }
+
+  .btn {
+    padding: 7px 10px;
+    font-size: 12px;
+  }
+
+  .headline { font-size: clamp(22px, 6vw, 30px); }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .ctas { flex-direction: column; align-items: flex-start; }
+
+  .slide-body { padding: 20px; }
+
+  .info-card-wrap { height: 200px; }
+
+  .viewer-wrap { min-height: 300px; }
+
+  .lighting-presets { flex-wrap: wrap; }
+
+  footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .page { padding: 14px 12px 32px; }
+
+  .grid-4 { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .model-selector { gap: 6px; }
+  .model-thumb { width: 68px; height: 68px; }
+
+  .slide-body { padding: 16px; min-height: 220px; }
+
+  .tabs { gap: 2px; }
+  .tab-btn { padding: 8px 10px; font-size: 12px; }
+
+  .section-title { font-size: 18px; }
+
+  .terminal-body { padding: 14px 14px; }
+
+  .btn-primary { width: 100%; justify-content: center; }
+}
+
+/* ── Print ────────────────────────────────────────────────── */
+@media print {
+  .header, footer, .ctas, .viewer-controls, .modal-overlay { display: none !important; }
+
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  .card, .terminal-box { border: 1px solid #ccc; box-shadow: none; }
+}

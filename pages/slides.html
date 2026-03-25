@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <title>Slides — Baitlab</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <header class="header">
+    <a href="../index.html" class="brand">Baitlab</a>
+    <nav class="nav">
+      <a href="../index.html" class="btn">← Home</a>
+      <a href="ai-features.html" class="btn">AI Features</a>
+      <a href="info-hub.html" class="btn">Info Hub</a>
+      <a href="demo.html" class="btn btn-primary">Try Demo</a>
+    </nav>
+  </header>
+
+  <main>
+    <a href="../index.html" class="back-link">← Back to Home</a>
+
+    <div class="hero">
+      <div class="headline">AI <span>Presentation</span> Slides</div>
+      <p class="sub-headline">Explore Baitlab's capabilities through an interactive slide deck. Use the arrows or keyboard to navigate.</p>
+    </div>
+
+    <!-- Slide deck -->
+    <section aria-label="Slide Presentation">
+      <div class="slide-deck">
+        <div class="slide-header">
+          <span id="slide-label">Slide 1 of 7</span>
+          <span id="slide-title-mini" style="color:var(--cyan)">Introduction</span>
+        </div>
+
+        <div class="slide-progress-bar">
+          <div class="slide-progress-fill" id="slide-progress" style="width:14.28%"></div>
+        </div>
+
+        <!-- Slides container (carousel) -->
+        <div class="carousel-wrap" id="slide-carousel" data-autoplay="0">
+          <div class="carousel-track">
+
+            <!-- Slide 1 -->
+            <div class="carousel-slide slide-body">
+              <span class="badge badge-cyan" style="margin-bottom:12px">01 / Introduction</span>
+              <h2>Welcome to Baitlab</h2>
+              <p style="color:var(--text-muted);line-height:1.7;max-width:600px">
+                Baitlab is the AI platform that <strong style="color:var(--cyan)">talks, works, and runs everything</strong> for your business and daily life.
+                Automate calls, manage workflows, and let AI handle the tasks you shouldn't have to.
+              </p>
+              <div class="ctas" style="margin-top:20px">
+                <span class="badge badge-lime">AI Calling</span>
+                <span class="badge badge-cyan">Automation</span>
+                <span class="badge badge-purple">3D AI</span>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-slide slide-body">
+              <span class="badge badge-lime" style="margin-bottom:12px">02 / AI Calling</span>
+              <h2>AI Voice Agents</h2>
+              <p style="color:var(--text-muted);line-height:1.7">
+                Deploy natural-sounding AI voice agents that handle inbound and outbound calls autonomously.
+                Book appointments, qualify leads, and manage customer service — 24 hours a day.
+              </p>
+              <div class="grid" style="margin-top:16px;grid-template-columns:repeat(2,1fr)">
+                <div class="card"><strong>📞 Inbound</strong><p>Handle calls, route enquiries, take messages.</p></div>
+                <div class="card"><strong>📤 Outbound</strong><p>Follow ups, reminders, and lead qualification.</p></div>
+              </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="carousel-slide slide-body">
+              <span class="badge badge-purple" style="margin-bottom:12px">03 / Automation</span>
+              <h2>Workflow Automation</h2>
+              <p style="color:var(--text-muted);line-height:1.7">
+                Connect WhatsApp, Email, Calendars, CRM, and Payments into automated end-to-end workflows.
+                Build once — run forever.
+              </p>
+              <div style="margin-top:18px">
+                <div class="progress-label"><span>Setup time saved</span><span>87%</span></div>
+                <div class="progress-wrap"><div class="progress-bar" data-value="87"></div></div>
+                <div class="progress-label"><span>Error reduction</span><span>94%</span></div>
+                <div class="progress-wrap"><div class="progress-bar" data-value="94"></div></div>
+              </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="carousel-slide slide-body">
+              <span class="badge badge-cyan" style="margin-bottom:12px">04 / 3D AI</span>
+              <h2>Interactive 3D Viewer</h2>
+              <p style="color:var(--text-muted);line-height:1.7">
+                Explore AI-powered 3D visualisations powered by Three.js. Real-time rendering with orbit controls,
+                dynamic lighting, and procedural AI models.
+              </p>
+              <div class="ctas" style="margin-top:20px">
+                <a href="3d-showcase.html" class="btn btn-primary">Open 3D Showcase →</a>
+              </div>
+            </div>
+
+            <!-- Slide 5 -->
+            <div class="carousel-slide slide-body">
+              <span class="badge badge-pink" style="margin-bottom:12px">05 / Typing AI</span>
+              <h2>AI Typing Simulation</h2>
+              <p style="color:var(--text-muted);line-height:1.7">
+                Realistic character-by-character AI typing with configurable speed presets, blinking cursor,
+                pause/resume controls, and streaming text support.
+              </p>
+              <div class="terminal-box" style="margin-top:16px">
+                <div class="terminal-titlebar">
+                  <span class="terminal-dot red"></span>
+                  <span class="terminal-dot yellow"></span>
+                  <span class="terminal-dot green"></span>
+                </div>
+                <div class="terminal-body">
+                  <div id="slide-typing" class="output" style="font-size:13px"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 6 -->
+            <div class="carousel-slide slide-body">
+              <span class="badge badge-lime" style="margin-bottom:12px">06 / Pricing</span>
+              <h2>Simple Pricing</h2>
+              <div class="grid" style="margin-top:12px;grid-template-columns:repeat(3,1fr)">
+                <div class="card">
+                  <strong>Starter</strong>
+                  <div style="font-size:24px;color:var(--cyan);margin:8px 0">$29<span style="font-size:13px;color:var(--text-muted)">/mo</span></div>
+                  <p>Core AI calling, basic workflows, email support.</p>
+                </div>
+                <div class="card" style="border-color:rgba(0,229,255,0.35)">
+                  <strong>Pro <span class="badge badge-cyan">Popular</span></strong>
+                  <div style="font-size:24px;color:var(--cyan);margin:8px 0">$99<span style="font-size:13px;color:var(--text-muted)">/mo</span></div>
+                  <p>Unlimited calls, advanced automations, priority support.</p>
+                </div>
+                <div class="card">
+                  <strong>Enterprise</strong>
+                  <div style="font-size:24px;color:var(--cyan);margin:8px 0">Custom</div>
+                  <p>Dedicated AI, SLA, custom integrations, compliance.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 7 -->
+            <div class="carousel-slide slide-body">
+              <span class="badge badge-purple" style="margin-bottom:12px">07 / Get Started</span>
+              <h2>Ready to Automate?</h2>
+              <p style="color:var(--text-muted);line-height:1.7;max-width:500px">
+                Join thousands of businesses and individuals who let Baitlab handle the work — so they can focus on what matters.
+              </p>
+              <div class="ctas" style="margin-top:24px">
+                <a href="demo.html" class="btn btn-primary">🚀 Try Demo Now</a>
+                <a href="../index.html" class="btn">← Back to Home</a>
+              </div>
+              <div class="stats-grid" style="margin-top:24px;grid-template-columns:repeat(3,1fr)">
+                <div class="stat-card"><div class="stat-number counter-el" data-count="10000" data-suffix="+">0+</div><div class="stat-label">Users</div></div>
+                <div class="stat-card"><div class="stat-number counter-el" data-count="99.9" data-suffix="%" data-decimals="1">0%</div><div class="stat-label">Uptime</div></div>
+                <div class="stat-card"><div class="stat-number counter-el" data-count="14" data-suffix="ms">0ms</div><div class="stat-label">Avg Latency</div></div>
+              </div>
+            </div>
+
+          </div><!-- /.carousel-track -->
+        </div><!-- /.carousel-wrap -->
+
+        <div class="slide-footer">
+          <button class="btn" id="slide-prev" aria-label="Previous slide">← Prev</button>
+          <div class="carousel-dots" id="slide-dots">
+            <div class="carousel-dot active"></div>
+            <div class="carousel-dot"></div>
+            <div class="carousel-dot"></div>
+            <div class="carousel-dot"></div>
+            <div class="carousel-dot"></div>
+            <div class="carousel-dot"></div>
+            <div class="carousel-dot"></div>
+          </div>
+          <button class="btn btn-primary" id="slide-next" aria-label="Next slide">Next →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Keyboard hint -->
+    <p style="text-align:center;color:var(--text-muted);font-size:12px;margin-top:12px">
+      Tip: use ← → arrow keys to navigate slides
+    </p>
+  </main>
+
+  <footer>
+    <span>© Baitlab — AI That Works for You.</span>
+    <span>
+      <a href="../index.html">Home</a> ·
+      <a href="ai-features.html">AI Features</a> ·
+      <a href="demo.html">Demo</a>
+    </span>
+  </footer>
+</div>
+
+<script type="module">
+  import { TypingEffect } from '../js/typing-effect.js';
+  import { initComponents } from '../js/components.js';
+  import { initAnimations  } from '../js/animations.js';
+  import { initRevealOnScroll } from '../js/utils.js';
+
+  const SLIDE_TITLES = ['Introduction', 'AI Calling', 'Automation', '3D AI', 'Typing AI', 'Pricing', 'Get Started'];
+  const TOTAL = 7;
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initComponents();
+    initAnimations();
+    initRevealOnScroll();
+
+    const track    = document.querySelector('#slide-carousel .carousel-track');
+    const dots     = document.querySelectorAll('#slide-dots .carousel-dot');
+    const label    = document.getElementById('slide-label');
+    const titleMini= document.getElementById('slide-title-mini');
+    const progress = document.getElementById('slide-progress');
+    let current = 0;
+
+    const goTo = (idx) => {
+      current = (idx + TOTAL) % TOTAL;
+      track.style.transform = `translateX(-${current * 100}%)`;
+      dots.forEach((d, i) => d.classList.toggle('active', i === current));
+      label.textContent = `Slide ${current + 1} of ${TOTAL}`;
+      titleMini.textContent = SLIDE_TITLES[current];
+      progress.style.width = `${((current + 1) / TOTAL) * 100}%`;
+
+      // Trigger slide-5 typing
+      if (current === 4) {
+        const el = document.getElementById('slide-typing');
+        el.textContent = '';
+        new TypingEffect(el, { speed: 'fast' }).typeLines([
+          '> Baitlab typing engine v3.0',
+          'Speed: fast (18ms/char)',
+          'Jitter: ±40% for organic feel',
+          'Status: ready ✓',
+        ], 500);
+      }
+
+      // Re-animate progress bars in current slide
+      track.querySelectorAll('.progress-bar[data-value]').forEach((bar) => {
+        bar.style.width = '0%';
+        setTimeout(() => {
+          bar.style.transition = 'width 0.8s cubic-bezier(0.4,0,0.2,1)';
+          bar.style.width = bar.dataset.value + '%';
+        }, 100);
+      });
+    };
+
+    document.getElementById('slide-prev').addEventListener('click', () => goTo(current - 1));
+    document.getElementById('slide-next').addEventListener('click', () => goTo(current + 1));
+    dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goTo(current + 1);
+      if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   goTo(current - 1);
+    });
+
+    // Touch swipe
+    let touchX = 0;
+    track.addEventListener('touchstart', (e) => { touchX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend',   (e) => {
+      const dx = e.changedTouches[0].clientX - touchX;
+      if (Math.abs(dx) > 40) goTo(dx < 0 ? current + 1 : current - 1);
+    });
+
+    goTo(0);
+  });
+</script>
+</body>
+</html>

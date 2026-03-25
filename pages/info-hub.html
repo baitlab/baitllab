@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <title>Info Hub — Baitlab</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <header class="header">
+    <a href="../index.html" class="brand">Baitlab</a>
+    <nav class="nav">
+      <a href="../index.html" class="btn">← Home</a>
+      <a href="ai-features.html" class="btn">AI Features</a>
+      <a href="portfolio.html" class="btn">Portfolio</a>
+      <a href="demo.html" class="btn btn-primary">Try Demo</a>
+    </nav>
+  </header>
+
+  <main>
+    <a href="../index.html" class="back-link">← Back to Home</a>
+
+    <div class="hero">
+      <div class="headline">Information <span>Hub</span></div>
+      <p class="sub-headline">Everything you need to know about Baitlab — guides, architecture, integration docs, and more.</p>
+    </div>
+
+    <!-- Stats -->
+    <section aria-label="Key Stats" class="js-reveal">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number counter-el" data-count="99.9" data-suffix="%" data-decimals="1">0%</div>
+          <div class="stat-label">Uptime SLA</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number counter-el" data-count="14" data-suffix="ms">0ms</div>
+          <div class="stat-label">Avg Latency</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number counter-el" data-count="500" data-suffix="K+">0K+</div>
+          <div class="stat-label">Calls Handled</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number counter-el" data-count="128" data-suffix="+">0+</div>
+          <div class="stat-label">Integrations</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tabs: sections -->
+    <section aria-label="Documentation Tabs" class="js-reveal" data-tabs-scope>
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="tab-overview">Overview</button>
+        <button class="tab-btn" data-tab="tab-architecture">Architecture</button>
+        <button class="tab-btn" data-tab="tab-security">Security</button>
+        <button class="tab-btn" data-tab="tab-integrations">Integrations</button>
+      </div>
+
+      <div class="tab-content active" id="tab-overview">
+        <div class="card">
+          <strong>Platform Overview</strong>
+          <p>Baitlab is a full-stack AI platform combining voice AI, workflow automation, and real-time 3D visualisation. The platform is built on a microservices architecture with event-driven communication and horizontal scaling.</p>
+        </div>
+        <div class="grid" style="margin-top:14px">
+          <div class="card">
+            <strong>🧠 AI Core</strong>
+            <p>LLM-powered reasoning engine with custom fine-tuning, RAG pipelines, and tool-use capabilities.</p>
+          </div>
+          <div class="card">
+            <strong>🔄 Orchestration</strong>
+            <p>Visual workflow builder with conditional branching, loops, error handling, and webhook triggers.</p>
+          </div>
+          <div class="card">
+            <strong>📊 Analytics</strong>
+            <p>Real-time dashboards tracking call outcomes, automation success rates, and system health.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="tab-architecture">
+        <div class="card">
+          <strong>System Architecture</strong>
+          <p>Three-tier architecture: API Gateway → Microservices → Data Layer. Event-driven with Apache Kafka for async communication. Kubernetes for container orchestration.</p>
+        </div>
+        <div style="margin-top:14px">
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-time">Layer 1</div>
+              <div class="timeline-content">
+                <h4>API Gateway</h4>
+                <p>Rate limiting, auth, routing, and load balancing across service replicas.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-time">Layer 2</div>
+              <div class="timeline-content">
+                <h4>Microservices</h4>
+                <p>AI Engine, Voice Service, Workflow Engine, Analytics Service — independently deployable.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-time">Layer 3</div>
+              <div class="timeline-content">
+                <h4>Data Layer</h4>
+                <p>PostgreSQL for structured data, Redis for caching, S3-compatible object storage, Kafka for streams.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="tab-security">
+        <div class="card">
+          <strong>Security & Compliance</strong>
+          <p>Baitlab is built with a security-first mindset: all data in transit is encrypted with TLS 1.3, data at rest uses AES-256, and PII is automatically redacted from logs.</p>
+        </div>
+        <div class="grid" style="margin-top:14px">
+          <div class="card"><strong>🔐 Encryption</strong><p>TLS 1.3 in transit. AES-256 at rest. Customer-managed keys available.</p></div>
+          <div class="card"><strong>📋 Compliance</strong><p>SOC 2 Type II, GDPR, HIPAA-ready. Audit logs for all actions.</p></div>
+          <div class="card"><strong>🛡️ Access Control</strong><p>RBAC with SSO/SAML, MFA enforcement, and session management.</p></div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="tab-integrations">
+        <div class="card">
+          <strong>Integration Catalogue</strong>
+          <p>Baitlab connects to 128+ platforms out of the box, with a REST API and webhook system for custom integrations.</p>
+        </div>
+        <div class="grid" style="margin-top:14px">
+          <div class="card"><strong>📧 Communication</strong><p>WhatsApp, Email (SMTP/SendGrid), Slack, Teams, Telegram.</p></div>
+          <div class="card"><strong>📅 Scheduling</strong><p>Google Calendar, Outlook, Calendly, Cal.com.</p></div>
+          <div class="card"><strong>💳 Payments</strong><p>Stripe, PayPal, Square, Braintree.</p></div>
+          <div class="card"><strong>🏢 CRM</strong><p>Salesforce, HubSpot, Zoho, Pipedrive, Close.io.</p></div>
+          <div class="card"><strong>📦 Storage</strong><p>AWS S3, Google Cloud Storage, Dropbox, OneDrive.</p></div>
+          <div class="card"><strong>🔧 Custom</strong><p>REST API, GraphQL, Webhooks, Zapier, Make.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Expandable sections -->
+    <section aria-label="Guides" class="js-reveal">
+      <h2 class="section-title">Quick Start Guides</h2>
+
+      <button class="collapsible-btn" data-target="guide-1" aria-expanded="false">
+        Setting up your first AI call agent <span class="arrow">▼</span>
+      </button>
+      <div class="collapsible-content" id="guide-1">
+        <ol style="padding-left:16px;margin:0;line-height:2">
+          <li>Create a Baitlab account and navigate to <strong>AI Agents</strong>.</li>
+          <li>Click <strong>New Agent</strong> and choose <em>Voice Agent</em> from the templates.</li>
+          <li>Configure the agent's name, voice, and greeting script.</li>
+          <li>Set up routing rules (e.g. forward to human after 3 unresolved turns).</li>
+          <li>Publish and assign a phone number — the agent goes live immediately.</li>
+        </ol>
+      </div>
+
+      <button class="collapsible-btn" data-target="guide-2" aria-expanded="false">
+        Building your first automated workflow <span class="arrow">▼</span>
+      </button>
+      <div class="collapsible-content" id="guide-2">
+        <ol style="padding-left:16px;margin:0;line-height:2">
+          <li>Go to <strong>Workflows</strong> → <strong>New Workflow</strong>.</li>
+          <li>Select a trigger: webhook, schedule, or AI call completion event.</li>
+          <li>Add action nodes: send email, update CRM, book calendar slot, etc.</li>
+          <li>Add conditional branches for different outcomes.</li>
+          <li>Test with sample data and deploy. Monitor runs in the dashboard.</li>
+        </ol>
+      </div>
+
+      <button class="collapsible-btn" data-target="guide-3" aria-expanded="false">
+        Integrating the 3D viewer into your site <span class="arrow">▼</span>
+      </button>
+      <div class="collapsible-content" id="guide-3">
+        <p>Include Three.js and the Baitlab 3D viewer module:</p>
+        <div class="code-block">
+&lt;script src="https://cdn.baitlab.com/three.min.js"&gt;&lt;/script&gt;
+&lt;script type="module"&gt;
+  import { ThreeDViewer } from './js/3d-viewer.js';
+  const viewer = new ThreeDViewer('#canvas', { lighting: 'studio' });
+&lt;/script&gt;
+        <span class="code-lang">HTML</span>
+        </div>
+      </div>
+
+      <button class="collapsible-btn" data-target="guide-4" aria-expanded="false">
+        Using the AI typing effect <span class="arrow">▼</span>
+      </button>
+      <div class="collapsible-content" id="guide-4">
+        <div class="code-block">
+import { TypingEffect } from './js/typing-effect.js';
+
+const t = new TypingEffect('#output', { speed: 'fast' });
+await t.type('Hello, world!');
+
+// Or stream multiple lines:
+await t.typeLines(['Line one', 'Line two'], 500);
+        <span class="code-lang">JS</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Roadmap timeline -->
+    <section aria-label="Roadmap" class="js-reveal">
+      <h2 class="section-title">Product Roadmap</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-time">Q1 2026 ✓</div>
+          <div class="timeline-content">
+            <h4>AI Voice 2.0</h4>
+            <p>Emotion detection, 48 kHz audio, and multilingual support (45 languages).</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">Q2 2026</div>
+          <div class="timeline-content">
+            <h4>3D Avatar Agents</h4>
+            <p>Real-time 3D avatars powered by WebGL and blend shapes for face animation.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">Q3 2026</div>
+          <div class="timeline-content">
+            <h4>Autonomous Agent Teams</h4>
+            <p>Multi-agent orchestration — specialist AI agents collaborating on complex tasks.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">Q4 2026</div>
+          <div class="timeline-content">
+            <h4>Edge AI Deployment</h4>
+            <p>Run Baitlab AI models on-device for ultra-low latency and offline capability.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© Baitlab — AI That Works for You.</span>
+    <span>
+      <a href="../index.html">Home</a> ·
+      <a href="portfolio.html">Portfolio</a> ·
+      <a href="demo.html">Demo</a>
+    </span>
+  </footer>
+</div>
+
+<script type="module">
+  import { initComponents } from '../js/components.js';
+  import { initAnimations  } from '../js/animations.js';
+  import { initRevealOnScroll } from '../js/utils.js';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initComponents();
+    initAnimations();
+    initRevealOnScroll();
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <title>3D Showcase — Baitlab</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/3d-viewer.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <style>
+    .viewer-wrap { height: 480px; }
+    .model-label { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <header class="header">
+    <a href="../index.html" class="brand">Baitlab</a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="../index.html" class="btn">← Home</a>
+      <a href="ai-features.html" class="btn">AI Features</a>
+      <a href="slides.html" class="btn">Slides</a>
+      <a href="demo.html" class="btn btn-primary">Try Demo</a>
+    </nav>
+  </header>
+
+  <main>
+    <a href="../index.html" class="back-link">← Back to Home</a>
+
+    <div class="hero">
+      <div class="headline">Interactive <span>3D</span> AI Showcase</div>
+      <p class="sub-headline">Explore real-time 3D rendering powered by Three.js — orbit, zoom, and manipulate AI-styled models. Drag to rotate, scroll to zoom.</p>
+    </div>
+
+    <!-- 3D Viewer -->
+    <section aria-label="3D Viewer">
+      <div class="viewer-wrap" id="viewer" style="height:480px">
+        <canvas id="threejs-canvas"></canvas>
+
+        <div class="viewer-overlay">
+          <div class="viewer-header">
+            <div class="viewer-title">🤖 Baitlab AI Neural Core</div>
+            <div class="viewer-controls">
+              <button class="viewer-ctrl-btn" id="btn-rotate" title="Toggle auto-rotate" aria-label="Toggle rotation">⟳</button>
+              <button class="viewer-ctrl-btn" id="btn-wireframe" title="Toggle wireframe" aria-label="Toggle wireframe">⬡</button>
+              <button class="viewer-ctrl-btn" id="btn-fullscreen" title="Fullscreen" aria-label="Fullscreen">⛶</button>
+            </div>
+          </div>
+
+          <div class="viewer-stats" id="viewer-stats">
+            FPS: — <br>Objects: — <br>Verts: —
+          </div>
+
+          <div class="viewer-info-panel">
+            Drag: <span>Orbit</span><br>
+            Scroll: <span>Zoom</span><br>
+            Model: <span id="model-name">AI Brain</span>
+          </div>
+
+          <div class="viewer-grid-hint">THREE.JS r160</div>
+        </div>
+
+        <div class="viewer-loading" id="viewer-loading">
+          <div class="loader-ring"></div>
+          <div class="loader-text">Initialising 3D Engine…</div>
+        </div>
+      </div>
+
+      <!-- Lighting presets -->
+      <div style="margin-top:14px">
+        <div class="model-label">Lighting Preset</div>
+        <div class="lighting-presets">
+          <button class="lighting-btn active" data-light="studio">Studio</button>
+          <button class="lighting-btn" data-light="outdoor">Outdoor</button>
+          <button class="lighting-btn" data-light="dramatic">Dramatic</button>
+        </div>
+      </div>
+
+      <!-- Model selector -->
+      <div style="margin-top:16px">
+        <div class="model-label">Select Model</div>
+        <div class="model-selector">
+          <div class="model-thumb active" data-model="brain" aria-label="AI Brain model">
+            🧠 <span>AI Brain</span>
+          </div>
+          <div class="model-thumb" data-model="torus" aria-label="Torus Knot model">
+            🔵 <span>Torus Knot</span>
+          </div>
+          <div class="model-thumb" data-model="sphere" aria-label="Sphere model">
+            🌐 <span>Sphere</span>
+          </div>
+          <div class="model-thumb" data-model="box" aria-label="Cube model">
+            📦 <span>Cube</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features grid -->
+    <section aria-label="3D Features" class="js-reveal">
+      <h2 class="section-title">3D Engine Capabilities</h2>
+      <div class="grid stagger-parent">
+        <div class="card stagger-child">
+          <strong>🎨 Real-time Rendering</strong>
+          <p>WebGL-powered renderer with physically-based materials, shadows, and HDR tone mapping.</p>
+        </div>
+        <div class="card stagger-child">
+          <strong>🔄 Interactive Controls</strong>
+          <p>Orbit, pan, and zoom with mouse or touch. Auto-rotation with smooth deceleration.</p>
+        </div>
+        <div class="card stagger-child">
+          <strong>💡 Dynamic Lighting</strong>
+          <p>Studio, outdoor, and dramatic lighting presets with directional, point, and spot lights.</p>
+        </div>
+        <div class="card stagger-child">
+          <strong>📐 Procedural Models</strong>
+          <p>AI-themed procedural geometry including neural-core clusters, torus knots, and lattices.</p>
+        </div>
+        <div class="card stagger-child">
+          <strong>📱 Mobile Optimised</strong>
+          <p>Touch controls, responsive canvas sizing, and pixel-ratio awareness for crisp displays.</p>
+        </div>
+        <div class="card stagger-child">
+          <strong>⚡ Performance</strong>
+          <p>Adaptive quality scaling, efficient render loops, and ResizeObserver-driven resizing.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tech stack -->
+    <section aria-label="Tech Stack" class="js-reveal">
+      <h2 class="section-title">Technology Stack</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <strong>Three.js r160</strong>
+          <p>Industry-standard 3D library providing scene graph, geometries, materials, and WebGL abstraction.</p>
+          <span class="badge badge-cyan" style="margin-top:8px">WebGL 2.0</span>
+        </div>
+        <div class="card">
+          <strong>Custom Orbit Controller</strong>
+          <p>Lightweight spherical coordinate orbit system with touch and mouse support — no OrbitControls dependency.</p>
+          <span class="badge badge-lime" style="margin-top:8px">~0 KB extra</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© Baitlab — AI That Works for You.</span>
+    <span>
+      <a href="../index.html">Home</a> ·
+      <a href="ai-features.html">AI Features</a> ·
+      <a href="demo.html">Demo</a>
+    </span>
+  </footer>
+</div>
+
+<!-- Three.js (bundled locally) -->
+<script src="../lib/three.min.js"></script>
+
+<script type="module">
+  import { ThreeDViewer } from '../js/3d-viewer.js';
+  import { initRevealOnScroll } from '../js/utils.js';
+  import { initComponents } from '../js/components.js';
+  import { initAnimations } from '../js/animations.js';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initComponents();
+    initAnimations();
+    initRevealOnScroll();
+
+    // ── Init viewer ────────────────────────────────────────
+    const viewer = new ThreeDViewer('#threejs-canvas', { lighting: 'studio' });
+
+    // Hide loading screen
+    setTimeout(() => {
+      const loading = document.getElementById('viewer-loading');
+      if (loading) loading.classList.add('hidden');
+    }, 800);
+
+    // FPS tracker
+    let frames = 0, lastTime = performance.now();
+    function trackFPS() {
+      frames++;
+      const now = performance.now();
+      if (now - lastTime >= 1000) {
+        document.getElementById('viewer-stats').innerHTML =
+          `FPS: ${frames}<br>Objects: ~15<br>Verts: ~8k`;
+        frames = 0;
+        lastTime = now;
+      }
+      requestAnimationFrame(trackFPS);
+    }
+    trackFPS();
+
+    // ── Controls ───────────────────────────────────────────
+    document.getElementById('btn-rotate').addEventListener('click', () => {
+      const on = viewer.toggleRotation();
+      document.getElementById('btn-rotate').style.color = on ? '#00e5ff' : 'rgba(200,246,200,0.4)';
+    });
+
+    document.getElementById('btn-fullscreen').addEventListener('click', () => {
+      const el = document.getElementById('viewer');
+      if (!document.fullscreenElement) el.requestFullscreen?.();
+      else document.exitFullscreen?.();
+    });
+
+    // Lighting presets
+    document.querySelectorAll('.lighting-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.lighting-btn').forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        viewer.setLighting(btn.dataset.light);
+      });
+    });
+
+    // Model selector
+    document.querySelectorAll('.model-thumb').forEach((thumb) => {
+      thumb.addEventListener('click', () => {
+        document.querySelectorAll('.model-thumb').forEach((t) => t.classList.remove('active'));
+        thumb.classList.add('active');
+        const model = thumb.dataset.model;
+        viewer.loadModel(model);
+        document.getElementById('model-name').textContent = thumb.querySelector('span').textContent;
+      });
+    });
+  });
+</script>
+</body>
+</html>
