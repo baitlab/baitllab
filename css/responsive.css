@@ -1,0 +1,43 @@
+/* Responsive / Mobile Styles */
+
+/* Base adjustments for small screens */
+@media (max-width: 1024px) {
+  .page {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Shared page padding */
+  .features-wrapper,
+  .pricing-wrapper,
+  .demo-wrapper,
+  .console-wrapper {
+    padding: 24px 16px;
+  }
+
+  /* Hero headings */
+  .hero-heading {
+    font-size: 26px !important;
+  }
+
+  /* Navbar handled in navbar.css */
+}
+
+@media (max-width: 480px) {
+  .hero-heading {
+    font-size: 22px !important;
+  }
+
+  .demo-input-row {
+    flex-wrap: wrap;
+  }
+
+  #demo-run-btn {
+    width: 100%;
+  }
+
+  .hint-chips {
+    justify-content: center;
+  }
+}

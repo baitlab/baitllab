@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Console — Baitlab</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/navbar.css" />
+  <link rel="stylesheet" href="../css/console.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar" aria-label="Main navigation">
+    <a class="navbar-brand" href="../index.html">Baitlab</a>
+    <button class="navbar-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <ul class="navbar-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="console.html">Console</a></li>
+      <li><a href="demo.html">Live Demo</a></li>
+      <li><a href="features.html">Features</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="demo.html" class="navbar-cta">Try Now</a></li>
+    </ul>
+  </nav>
+
+  <!-- Console -->
+  <div class="console-wrapper">
+    <div class="console-container" role="main">
+      <div class="console-titlebar" aria-hidden="true">
+        <span class="console-dot red"></span>
+        <span class="console-dot yellow"></span>
+        <span class="console-dot green"></span>
+        <span class="console-title">baitlab-console — zsh</span>
+      </div>
+      <div class="console-body" aria-label="Console output">
+        <div class="console-line">
+          <span class="console-prompt">baitlab@ai:~$</span>
+          <span id="console-out"></span>
+          <span class="cursor" aria-hidden="true"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/utils.js"></script>
+  <script src="../js/router.js"></script>
+  <script>
+    // Typewriter intro for console page
+    var lines = [
+      'baitlab --version',
+      'Baitlab AI v1.0.0',
+      'Ready for command input.',
+    ];
+    var el = document.getElementById('console-out');
+    var li = 0, ci = 0;
+    function step() {
+      if (li >= lines.length) return;
+      var line = lines[li];
+      if (ci < line.length) {
+        el.textContent += line[ci++];
+        setTimeout(step, 35);
+      } else {
+        el.textContent += '\n';
+        ci = 0; li++;
+        setTimeout(step, 800);
+      }
+    }
+    step();
+  </script>
+</body>
+</html>

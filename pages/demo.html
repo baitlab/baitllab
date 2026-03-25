@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live Demo — Baitlab</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/navbar.css" />
+  <link rel="stylesheet" href="../css/demo.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar" aria-label="Main navigation">
+    <a class="navbar-brand" href="../index.html">Baitlab</a>
+    <button class="navbar-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <ul class="navbar-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="console.html">Console</a></li>
+      <li><a href="demo.html">Live Demo</a></li>
+      <li><a href="features.html">Features</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="demo.html" class="navbar-cta">Try Now</a></li>
+    </ul>
+  </nav>
+
+  <!-- Demo Interface -->
+  <main class="demo-wrapper" role="main">
+    <div class="demo-header">
+      <h1>⚡ Live Demo</h1>
+      <p>Type a command and watch Baitlab AI respond in real time.</p>
+    </div>
+
+    <div class="demo-terminal" aria-label="Interactive AI terminal">
+      <!-- Title bar -->
+      <div class="demo-titlebar" aria-hidden="true">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+        <span class="demo-terminal-label">baitlab-demo — live session</span>
+      </div>
+
+      <!-- Output log -->
+      <div id="demo-output" class="demo-output" aria-live="polite" aria-label="AI response output"></div>
+
+      <!-- Input row -->
+      <div class="demo-input-row">
+        <span class="demo-prompt-label" aria-hidden="true">$&gt;</span>
+        <input
+          id="demo-input"
+          type="text"
+          placeholder="e.g. call barber and book appointment"
+          aria-label="Enter AI command"
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <button id="demo-run-btn" aria-label="Run command">Run</button>
+      </div>
+    </div>
+
+    <!-- Hint chips -->
+    <div class="demo-hints">
+      <h3>Try these commands</h3>
+      <div class="hint-chips">
+        <span class="hint-chip" role="button" tabindex="0">&gt; call barber and book appointment</span>
+        <span class="hint-chip" role="button" tabindex="0">&gt; schedule meeting with client tomorrow</span>
+        <span class="hint-chip" role="button" tabindex="0">&gt; remind me about project deadline</span>
+        <span class="hint-chip" role="button" tabindex="0">&gt; automate daily reports</span>
+        <span class="hint-chip" role="button" tabindex="0">&gt; execute workflow</span>
+      </div>
+    </div>
+  </main>
+
+  <script src="../js/utils.js"></script>
+  <script src="../js/router.js"></script>
+  <script src="../js/demo-handler.js"></script>
+</body>
+</html>

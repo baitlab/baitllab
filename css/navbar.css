@@ -1,0 +1,123 @@
+/* Navbar Styles */
+:root {
+  --bg: #000000;
+  --bg-dark: #0d0d0d;
+  --primary: #22c55e;
+  --accent: #10b981;
+  --text: #ffffff;
+  --muted: #9ca3af;
+  --border: #1f2937;
+  --cyan: #00e5ff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "JetBrains Mono", "Courier New", monospace;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  background: var(--bg-dark);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-brand {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary);
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+
+.navbar-brand:hover {
+  color: var(--cyan);
+}
+
+.navbar-links {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+  align-items: center;
+}
+
+.navbar-links a {
+  color: var(--muted);
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: color 0.2s, background 0.2s;
+  border: 1px solid transparent;
+}
+
+.navbar-links a:hover,
+.navbar-links a.active {
+  color: var(--primary);
+  background: rgba(34, 197, 94, 0.08);
+  border-color: rgba(34, 197, 94, 0.2);
+}
+
+.navbar-cta {
+  background: var(--primary) !important;
+  color: #000 !important;
+  font-weight: 700;
+  border-color: var(--primary) !important;
+}
+
+.navbar-cta:hover {
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+}
+
+.navbar-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+@media (max-width: 768px) {
+  .navbar-toggle {
+    display: block;
+  }
+
+  .navbar-links {
+    display: none;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: var(--bg-dark);
+    flex-direction: column;
+    padding: 16px;
+    border-bottom: 1px solid var(--border);
+    gap: 4px;
+  }
+
+  .navbar-links.open {
+    display: flex;
+  }
+
+  .navbar-links a {
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+  }
+}
